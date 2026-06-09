@@ -3,1026 +3,1745 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>保险创修共创会 · 大树</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<meta name="description" content="毛选创修共读会：用经典思想，解决当下人生与事业的真实问题。">
+<title>毛选创修共读会 · 大树</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
 <style>
 :root {
-  --ink: #2c1810;
-  --ink-light: #5a3d2b;
-  --paper: #f5f0e8;
-  --paper-dark: #e8dfd0;
-  --sepia: #8b6914;
-  --sepia-light: #c4952a;
-  --stamp-red: #c23a2b;
-  --green: #2d5016;
-  --green-bg: #e8f0e0;
-  --blue: #1a4a6e;
-  --blue-bg: #e0ecf5;
-  --highlight: #fff3cd;
+  --paper: #faf7f2;
+  --paper-deep: #f2eadf;
+  --paper-soft: #f7f1e8;
+  --white: #fffefa;
+  --ink: #292a25;
+  --ink-soft: #665e54;
+  --ink-faint: #91877c;
+  --green: #31533a;
+  --green-deep: #23422d;
+  --green-soft: #e8efe8;
+  --gold: #b58a3d;
+  --gold-soft: #f3e8cf;
+  --wood: #b9875f;
+  --line: rgba(80, 65, 48, 0.14);
+  --shadow: 0 22px 60px rgba(73, 55, 36, 0.08);
+  --serif: "Noto Serif SC", "Songti SC", serif;
+  --sans: "Noto Sans SC", "PingFang SC", sans-serif;
+  --hand: "Ma Shan Zheng", "STKaiti", serif;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 86px;
+}
 
 body {
-  font-family: 'Noto Sans SC', sans-serif;
-  background: var(--paper);
-  color: var(--ink);
-  line-height: 1.8;
   min-height: 100vh;
-}
-
-/* ===== 顶部导航栏 ===== */
-.topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 24px;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.brand-left {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.brand-logo {
-  width: 32px;
-  height: 32px;
-  background: var(--green);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 0.7rem;
-  font-weight: 700;
-}
-
-.brand-name {
-  font-family: 'Noto Serif SC', serif;
-  font-size: 0.95rem;
-  font-weight: 700;
   color: var(--ink);
-}
-
-.brand-name span {
-  font-size: 0.7rem;
-  font-weight: 400;
-  color: var(--ink-light);
-  font-family: 'Noto Sans SC', sans-serif;
-}
-
-.brand-right {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.8rem;
-  color: var(--ink-light);
-}
-
-.brand-right .mountain {
-  width: 24px;
-  height: 24px;
-  border: 2px solid var(--sepia);
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.6rem;
-}
-
-/* ===== 顶部标语条 ===== */
-.tagline-bar {
-  text-align: center;
-  padding: 8px 20px;
-  font-size: 0.8rem;
-  color: var(--ink-light);
-  letter-spacing: 0.3em;
-  border-bottom: 1px solid var(--paper-dark);
-}
-
-.tagline-bar span { margin: 0 6px; }
-
-/* ===== 英雄区 ===== */
-.hero {
-  text-align: center;
-  padding: 60px 20px 50px;
-  background: linear-gradient(180deg, #f5f0e8 0%, #faf8f3 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-main-title {
-  font-family: 'Noto Serif SC', serif;
-  font-size: 3.2rem;
-  font-weight: 900;
-  line-height: 1.2;
-  letter-spacing: 0.12em;
-  color: var(--ink);
-  margin-bottom: 16px;
-}
-
-.hero-subtitle {
-  font-family: 'Noto Serif SC', serif;
-  font-size: 1.15rem;
-  color: var(--ink-light);
-  margin-bottom: 24px;
-  letter-spacing: 0.05em;
-}
-
-.hero-badge {
-  display: inline-block;
-  padding: 6px 24px;
-  background: var(--green);
-  color: white;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-}
-
-.hero-slogan {
-  margin-top: 32px;
-  font-family: 'Noto Serif SC', serif;
-  font-size: 1.3rem;
-  color: var(--stamp-red);
-  font-weight: 700;
+  background:
+    radial-gradient(circle at 18% 8%, rgba(181, 138, 61, 0.06), transparent 28%),
+    radial-gradient(circle at 84% 18%, rgba(49, 83, 58, 0.05), transparent 24%),
+    var(--paper);
+  font-family: var(--sans);
   line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
 }
 
-.hero-slogan .highlight {
-  background: var(--highlight);
-  padding: 2px 8px;
-  border-radius: 4px;
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.26;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E");
 }
 
-.hero-note {
-  margin-top: 16px;
-  font-size: 0.95rem;
-  color: var(--ink-light);
+a {
+  color: inherit;
 }
 
-.hero-note strong {
-  color: var(--stamp-red);
+button {
+  font: inherit;
 }
 
-/* ===== 三连否定横幅 ===== */
-.not-banner {
-  background: var(--ink);
-  color: var(--paper);
-  text-align: center;
-  padding: 20px 20px;
-}
-
-.not-banner .not-line {
-  font-size: 0.85rem;
-  opacity: 0.7;
-  margin-bottom: 4px;
-}
-
-.not-banner .yes-line {
-  font-family: 'Noto Serif SC', serif;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--sepia-light);
-}
-
-/* ===== 核心信息区 ===== */
-.info-section {
-  padding: 50px 0;
-}
-
-.info-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
-  max-width: 700px;
+.container {
+  width: min(1080px, calc(100% - 48px));
   margin: 0 auto;
-  padding: 0 20px;
 }
 
-.info-item {
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-  padding: 20px;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(44,24,16,0.06);
+.section {
+  padding: 110px 0;
 }
 
-.info-icon {
-  font-size: 1.4rem;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.info-label {
+.section-kicker {
+  margin-bottom: 14px;
+  color: var(--gold);
   font-size: 0.78rem;
-  color: var(--ink-light);
-  opacity: 0.7;
-  margin-bottom: 2px;
-}
-
-.info-value {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--ink);
-}
-
-.info-value.small {
-  font-size: 0.85rem;
-  font-weight: 400;
-  color: var(--ink-light);
-}
-
-/* ===== 适合谁来 ===== */
-.audience-section {
-  padding: 50px 0;
-  background: white;
+  font-weight: 700;
+  letter-spacing: 0.22em;
 }
 
 .section-title {
-  font-family: 'Noto Serif SC', serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 8px;
-  color: var(--ink);
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.03em;
 }
 
 .section-desc {
-  text-align: center;
-  font-size: 0.9rem;
-  color: var(--ink-light);
-  margin-bottom: 32px;
+  max-width: 620px;
+  margin-top: 18px;
+  color: var(--ink-soft);
+  font-size: 1rem;
 }
 
-.audience-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 16px;
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 0 20px;
+.nav-shell {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid rgba(80, 65, 48, 0.1);
+  background: rgba(250, 247, 242, 0.82);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
 }
 
-.audience-card {
-  text-align: center;
-  padding: 28px 16px;
-  border-radius: 10px;
-  background: var(--paper);
-  border: 1px solid var(--paper-dark);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.audience-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(44,24,16,0.08);
-}
-
-.audience-icon {
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-
-.audience-name {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 4px;
-}
-
-.audience-detail {
-  font-size: 0.8rem;
-  color: var(--ink-light);
-}
-
-/* ===== 理念三行 ===== */
-.philosophy-section {
-  padding: 50px 20px;
-  text-align: center;
-  background: linear-gradient(180deg, #faf8f3 0%, #f5f0e8 100%);
-}
-
-.philosophy-text {
-  font-family: 'Noto Serif SC', serif;
-  font-size: 1.2rem;
-  line-height: 2.4;
-  color: var(--ink-light);
-}
-
-.philosophy-text strong {
-  color: var(--ink);
-  font-weight: 700;
-}
-
-.philosophy-text .arrow {
-  color: var(--sepia-light);
-  margin: 0 12px;
-  font-family: 'Noto Sans SC', sans-serif;
-}
-
-/* ===== 课表 ===== */
-.courses-section {
-  padding: 50px 0;
-}
-
-.series-progress {
+.nav {
+  min-height: 72px;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
   gap: 12px;
-  margin: 30px 0 40px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.brand-mark {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--green);
+  color: #fff;
+  font-family: var(--serif);
+  font-size: 0.85rem;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2);
+}
+
+.brand-text {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+}
+
+.nav-links a {
+  position: relative;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -7px;
+  height: 1px;
+  background: var(--green);
+  transition: right 0.25s ease;
+}
+
+.nav-links a:hover {
+  color: var(--green);
+}
+
+.nav-links a:hover::after {
+  right: 0;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 92px 0 76px;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  top: -210px;
+  right: -150px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(181,138,61,0.12), transparent 68%);
+  pointer-events: none;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(390px, 0.92fr);
+  align-items: center;
+  gap: 76px;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  color: var(--green);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
+
+.hero-eyebrow::before {
+  content: "";
+  width: 34px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.hero h1 {
+  max-width: 640px;
+  font-family: var(--serif);
+  font-size: clamp(3rem, 6.4vw, 5.8rem);
+  font-weight: 700;
+  line-height: 1.13;
+  letter-spacing: 0.06em;
+}
+
+.hero h1 span {
+  position: relative;
+  display: inline-block;
+  color: var(--green);
+}
+
+.hero h1 span::after {
+  content: "";
+  position: absolute;
+  left: 4%;
+  right: 0;
+  bottom: 4px;
+  z-index: -1;
+  height: 12px;
+  background: var(--gold-soft);
+  transform: rotate(-1deg);
+}
+
+.hero-lead {
+  max-width: 620px;
+  margin-top: 28px;
+  color: var(--ink-soft);
+  font-family: var(--serif);
+  font-size: clamp(1.12rem, 2vw, 1.42rem);
+  line-height: 1.8;
+}
+
+.hero-note {
+  margin-top: 12px;
+  color: var(--ink-faint);
+  font-size: 0.92rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 34px;
   flex-wrap: wrap;
 }
 
-.step {
-  display: flex;
+.button {
+  min-height: 48px;
+  padding: 0 24px;
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.85rem;
-  color: var(--ink-light);
-}
-
-.step .dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.step .dot.done { background: var(--green); }
-.step .dot.current { background: var(--sepia); box-shadow: 0 0 0 3px rgba(196,149,42,0.3); }
-.step .dot.pending { background: #ccc; }
-
-.step .arrow { color: #ccc; font-size: 0.75rem; }
-
-.cards {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  max-width: 780px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.card {
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 12px rgba(44,24,16,0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
+  justify-content: center;
+  gap: 9px;
+  border: 1px solid var(--green);
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 600;
   text-decoration: none;
-  color: inherit;
-  display: block;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(44,24,16,0.15);
+.button-primary {
+  background: var(--green);
+  color: #fff;
+  box-shadow: 0 10px 25px rgba(49, 83, 58, 0.16);
 }
 
-.card-header {
-  padding: 28px 32px 20px;
+.button-secondary {
+  background: rgba(255,255,255,0.42);
+  color: var(--green);
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button-primary:hover {
+  background: var(--green-deep);
+  box-shadow: 0 14px 28px rgba(49, 83, 58, 0.22);
+}
+
+.hero-visual {
   position: relative;
+  min-height: 480px;
 }
 
-.card-number {
+.sunlight {
   position: absolute;
-  top: 16px;
-  right: 24px;
-  font-family: 'Noto Serif SC', serif;
-  font-size: 3rem;
-  font-weight: 900;
-  opacity: 0.08;
+  inset: 0 0 auto auto;
+  width: 80%;
+  height: 72%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 70% 24%, rgba(255,246,209,0.86), rgba(240,215,168,0.18) 42%, transparent 70%);
+  filter: blur(3px);
+}
+
+.leaf-shadow {
+  position: absolute;
+  top: -18px;
+  right: -6px;
+  width: 230px;
+  height: 310px;
+  opacity: 0.13;
+  transform: rotate(12deg);
+  background:
+    radial-gradient(ellipse at 30% 20%, var(--green) 0 13%, transparent 14%),
+    radial-gradient(ellipse at 67% 31%, var(--green) 0 15%, transparent 16%),
+    radial-gradient(ellipse at 37% 51%, var(--green) 0 17%, transparent 18%),
+    radial-gradient(ellipse at 73% 65%, var(--green) 0 14%, transparent 15%),
+    linear-gradient(78deg, transparent 48%, var(--green) 49% 51%, transparent 52%);
+  filter: blur(5px);
+}
+
+.desk {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 32px;
+  height: 230px;
+  border-radius: 24px 24px 38px 38px;
+  background:
+    repeating-linear-gradient(5deg, rgba(85,57,35,0.025) 0 2px, transparent 2px 24px),
+    linear-gradient(145deg, #d5b08d, #bd8c65);
+  box-shadow: var(--shadow);
+  transform: perspective(760px) rotateX(7deg) rotateZ(-1deg);
+}
+
+.book {
+  position: absolute;
+  left: 42px;
+  bottom: 72px;
+  width: 270px;
+  height: 178px;
+  filter: drop-shadow(0 16px 16px rgba(72,44,24,0.16));
+  transform: rotate(-4deg);
+}
+
+.page {
+  position: absolute;
+  top: 0;
+  width: 52%;
+  height: 100%;
+  padding: 26px 18px;
+  background: #fffdf5;
+  border: 1px solid rgba(106,82,58,0.12);
+}
+
+.page-left {
+  left: 0;
+  border-radius: 5px 3px 3px 9px;
+  transform: skewY(2deg);
+}
+
+.page-right {
+  right: 0;
+  border-radius: 3px 5px 9px 3px;
+  transform: skewY(-2deg);
+}
+
+.book-spine {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 4px;
+  bottom: 4px;
+  width: 1px;
+  background: rgba(91,65,42,0.18);
+  box-shadow: 0 0 10px rgba(78,52,31,0.12);
+}
+
+.page-title {
+  font-family: var(--serif);
+  color: var(--ink);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.page-rule {
+  height: 1px;
+  margin: 12px 0 10px;
+  background: var(--gold);
+  opacity: 0.45;
+}
+
+.page-lines {
+  height: 72px;
+  background: repeating-linear-gradient(to bottom, rgba(75,65,55,0.18) 0 1px, transparent 1px 14px);
+}
+
+.hand-note {
+  position: absolute;
+  right: 22px;
+  bottom: 18px;
+  color: var(--green);
+  font-family: var(--hand);
+  font-size: 0.95rem;
+  transform: rotate(-5deg);
+}
+
+.tea {
+  position: absolute;
+  right: 38px;
+  bottom: 74px;
+  width: 92px;
+  height: 92px;
+  border: 11px solid #e9ddc7;
+  border-radius: 50%;
+  background: radial-gradient(circle, #79583d 0 42%, #a67d58 44% 51%, #e9ddc7 53%);
+  box-shadow: 0 15px 20px rgba(70,42,22,0.16);
+}
+
+.tea::after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  right: -36px;
+  width: 34px;
+  height: 38px;
+  border: 9px solid #e9ddc7;
+  border-left: 0;
+  border-radius: 0 24px 24px 0;
+}
+
+.pencil {
+  position: absolute;
+  right: 88px;
+  bottom: 52px;
+  width: 142px;
+  height: 8px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #d8b15d 0 82%, #31533a 82% 95%, #d9c4a7 95%);
+  transform: rotate(19deg);
+  box-shadow: 0 5px 8px rgba(70,42,22,0.12);
+}
+
+.event-wrap {
+  position: relative;
+  z-index: 3;
+  margin-top: -2px;
+}
+
+.event-card {
+  padding: 24px 30px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 24px;
+  border: 1px solid rgba(181, 138, 61, 0.2);
+  border-radius: 18px;
+  background: linear-gradient(110deg, #f3e7cb, #f8f1e2 60%, #f1e8d9);
+  box-shadow: 0 14px 40px rgba(89, 66, 38, 0.08);
+}
+
+.event-date {
+  width: 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.66);
+  color: var(--green);
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.event-date span {
+  display: block;
+  color: var(--ink-faint);
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+.event-copy strong {
+  display: block;
+  font-family: var(--serif);
+  font-size: 1.22rem;
+}
+
+.event-copy p {
+  margin-top: 4px;
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+}
+
+.event-link {
+  color: var(--green);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.origin-grid {
+  display: grid;
+  grid-template-columns: 0.82fr 1.18fr;
+  gap: 86px;
+  align-items: start;
+}
+
+.origin-note {
+  position: sticky;
+  top: 110px;
+}
+
+.origin-quote {
+  position: relative;
+  padding: 42px 44px 38px;
+  border-left: 2px solid var(--gold);
+  background: rgba(255,254,250,0.7);
+  box-shadow: var(--shadow);
+}
+
+.origin-quote::before {
+  content: "“";
+  position: absolute;
+  top: -28px;
+  left: 25px;
+  color: var(--gold-soft);
+  font-family: Georgia, serif;
+  font-size: 7rem;
   line-height: 1;
 }
 
-.card-header h2 {
-  font-family: 'Noto Serif SC', serif;
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin-bottom: 8px;
+.origin-quote p {
+  position: relative;
+  color: var(--ink-soft);
+  font-family: var(--serif);
+  font-size: 1.03rem;
+  line-height: 2.05;
 }
 
-.card-meta {
-  display: flex;
-  gap: 16px;
-  font-size: 0.82rem;
-  color: var(--ink-light);
-  flex-wrap: wrap;
+.origin-sign {
+  margin-top: 24px;
+  color: var(--green);
+  font-family: var(--hand);
+  font-size: 1.2rem;
+  text-align: right;
 }
 
-.card-meta span {
-  display: flex;
-  align-items: center;
-  gap: 4px;
+.meaning-list {
+  margin-top: 32px;
+  border-top: 1px solid var(--line);
 }
 
-.card-body {
-  padding: 0 32px 28px;
-}
-
-.card-desc {
-  font-size: 0.92rem;
-  color: var(--ink-light);
-  line-height: 1.9;
-  margin-bottom: 16px;
-}
-
-.card-tags {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.tag {
-  font-size: 0.75rem;
-  padding: 3px 12px;
-  border-radius: 999px;
-  font-weight: 500;
-}
-
-.tag-green { background: var(--green-bg); color: var(--green); }
-.tag-blue { background: var(--blue-bg); color: var(--blue); }
-.tag-red { background: #fce4e1; color: var(--stamp-red); }
-.tag-sepia { background: #faf3e0; color: var(--sepia); }
-
-.card-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  padding: 4px 14px;
-  border-radius: 999px;
-  margin-left: 8px;
-}
-
-.status-done { background: var(--green-bg); color: var(--green); }
-.status-next { background: #fff8e1; color: #b8860b; }
-.status-later { background: #f0f0f0; color: #888; }
-
-.card.done .card-header { border-left: 4px solid var(--green); }
-.card.next .card-header { border-left: 4px solid var(--sepia); }
-.card.later .card-header { border-left: 4px solid #ccc; }
-
-/* ===== 精华回放 ===== */
-.highlight-section {
-  padding: 50px 0;
-  background: var(--paper);
-}
-
-.highlight-block {
-  background: white;
-  border-radius: 12px;
-  padding: 32px;
-  margin-bottom: 32px;
-  box-shadow: 0 2px 12px rgba(44,24,16,0.06);
-  border-left: 4px solid var(--stamp-red);
-  max-width: 780px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.highlight-block.light {
-  border-left-color: var(--sepia);
-}
-
-.highlight-label {
-  font-family: 'Noto Serif SC', serif;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 16px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--paper-dark);
-}
-
-.highlight-text {
-  font-size: 0.95rem;
-  color: var(--ink-light);
-  line-height: 1.9;
-  margin-bottom: 12px;
-}
-
-.highlight-text:last-child { margin-bottom: 0; }
-
-.quotes-grid {
+.meaning-item {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px;
-  max-width: 780px;
-  margin: 0 auto 32px;
-  padding: 0 20px;
+  grid-template-columns: 64px 1fr;
+  gap: 22px;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.meaning-char {
+  color: var(--green);
+  font-family: var(--serif);
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.meaning-item h3 {
+  font-family: var(--serif);
+  font-size: 1.08rem;
+}
+
+.meaning-item p {
+  margin-top: 5px;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.dual-section {
+  background: var(--green-deep);
+  color: #f8f3e9;
+}
+
+.dual-section .section-kicker {
+  color: #d9b870;
+}
+
+.dual-section .section-desc {
+  color: rgba(248,243,233,0.68);
+}
+
+.dual-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: stretch;
+  gap: 34px;
+  margin-top: 54px;
+}
+
+.dual-card {
+  min-height: 330px;
+  padding: 40px;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 22px;
+  background: rgba(255,255,255,0.045);
+}
+
+.dual-number {
+  color: #d9b870;
+  font-family: var(--serif);
+  font-size: 0.76rem;
+  letter-spacing: 0.16em;
+}
+
+.dual-card h3 {
+  margin-top: 18px;
+  font-family: var(--serif);
+  font-size: 1.8rem;
+}
+
+.dual-card > p {
+  margin-top: 14px;
+  color: rgba(248,243,233,0.66);
+  font-size: 0.92rem;
+}
+
+.dual-list {
+  margin-top: 30px;
+  list-style: none;
+}
+
+.dual-list li {
+  padding: 12px 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  font-size: 0.86rem;
+}
+
+.dual-list span {
+  color: rgba(248,243,233,0.52);
+}
+
+.dual-arrow {
+  align-self: center;
+  color: #d9b870;
+  font-family: var(--serif);
+  font-size: 1.7rem;
+}
+
+.course-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 32px;
+}
+
+.course-progress {
+  color: var(--ink-faint);
+  font-family: var(--serif);
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+
+.course-progress strong {
+  color: var(--green);
+  font-size: 1.5rem;
+}
+
+.course-list {
+  margin-top: 54px;
+  border-top: 1px solid var(--line);
+}
+
+.course-card {
+  position: relative;
+  padding: 34px 22px;
+  display: grid;
+  grid-template-columns: 78px 1.25fr 1fr auto;
+  align-items: center;
+  gap: 28px;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  transition: padding 0.25s ease, background 0.25s ease;
+}
+
+.course-card:hover {
+  padding-left: 32px;
+  padding-right: 32px;
+  background: rgba(255,255,255,0.62);
+}
+
+.course-no {
+  color: rgba(49,83,58,0.25);
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.course-main h3 {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+}
+
+.course-meta {
+  margin-top: 5px;
+  color: var(--ink-faint);
+  font-size: 0.78rem;
+}
+
+.course-question {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.course-question strong {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-weight: 600;
+}
+
+.status {
+  min-width: 82px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.status-done {
+  background: var(--green-soft);
+  color: var(--green);
+}
+
+.status-now {
+  background: var(--gold-soft);
+  color: #86631e;
+}
+
+.status-later {
+  background: #efede9;
+  color: #7f776e;
+}
+
+.workshop-section {
+  background: var(--paper-soft);
+}
+
+.workshop-intro {
+  max-width: 680px;
+}
+
+.acts {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 60px;
+}
+
+.acts::before {
+  content: "";
+  position: absolute;
+  top: 40px;
+  left: 15%;
+  right: 15%;
+  height: 1px;
+  border-top: 1px dashed rgba(181,138,61,0.42);
+}
+
+.act-card {
+  position: relative;
+  z-index: 1;
+  padding: 0 26px 32px;
+  border-radius: 18px;
+  background: var(--white);
+  text-align: center;
+  box-shadow: 0 16px 40px rgba(73,55,36,0.06);
+}
+
+.act-number {
+  width: 80px;
+  height: 80px;
+  margin: -2px auto 24px;
+  display: grid;
+  place-items: center;
+  border: 12px solid var(--paper-soft);
+  border-radius: 50%;
+  background: var(--green);
+  color: #fff;
+  font-family: var(--serif);
+  font-size: 1.12rem;
+}
+
+.act-card h3 {
+  font-family: var(--serif);
+  font-size: 1.12rem;
+}
+
+.act-card p {
+  margin-top: 10px;
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+}
+
+.rules {
+  margin-top: 38px;
+  padding: 28px 34px;
+  display: grid;
+  grid-template-columns: auto repeat(3, 1fr);
+  align-items: center;
+  gap: 24px;
+  border: 1px solid rgba(49,83,58,0.12);
+  border-radius: 16px;
+  background: rgba(255,255,255,0.5);
+}
+
+.rules-title {
+  color: var(--green);
+  font-family: var(--serif);
+  font-weight: 700;
+}
+
+.rule {
+  padding-left: 20px;
+  border-left: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: 0.84rem;
+}
+
+.echo-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.echo-meta {
+  color: var(--ink-faint);
+  font-size: 0.84rem;
+  text-align: right;
+}
+
+.quotes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 50px;
 }
 
 .quote-card {
-  background: white;
-  border-radius: 10px;
-  padding: 24px;
-  box-shadow: 0 2px 8px rgba(44,24,16,0.06);
-  border-top: 3px solid var(--sepia-light);
+  min-height: 250px;
+  padding: 34px 30px 30px;
+  border-top: 2px solid var(--gold);
+  background: rgba(255,254,250,0.78);
+  box-shadow: 0 18px 45px rgba(73,55,36,0.06);
 }
 
-.quote-person {
-  font-family: 'Noto Serif SC', serif;
-  font-weight: 700;
+.quote-mark {
+  color: var(--gold-soft);
+  font-family: Georgia, serif;
+  font-size: 4rem;
+  line-height: 0.6;
+}
+
+.quote-card blockquote {
+  color: var(--ink-soft);
+  font-family: var(--serif);
   font-size: 0.95rem;
-  color: var(--sepia);
-  margin-bottom: 10px;
+  line-height: 2;
 }
 
-.quote-text {
-  font-size: 0.88rem;
-  color: var(--ink-light);
-  line-height: 1.8;
-  font-style: italic;
-}
-
-/* ===== 一人公司 ===== */
-.opc-section {
-  background: var(--ink);
-  color: var(--paper);
-  padding: 50px 0;
-}
-
-.opc-section .section-title { color: var(--paper); }
-.opc-section .section-desc { color: rgba(245,240,232,0.6); }
-
-.opc-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  padding: 20px;
-  max-width: 780px;
-  margin: 0 auto;
-}
-
-.opc-card {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 10px;
-  padding: 24px;
-  transition: background 0.3s;
-}
-
-.opc-card:hover {
-  background: rgba(255,255,255,0.1);
-}
-
-.opc-card h3 {
-  font-family: 'Noto Serif SC', serif;
-  font-size: 1rem;
-  margin-bottom: 8px;
-  color: var(--sepia-light);
-}
-
-.opc-card p {
-  font-size: 0.85rem;
-  opacity: 0.7;
-  line-height: 1.7;
-}
-
-/* ===== 物料 ===== */
-.tools-section {
-  padding: 50px 0 60px;
-  max-width: 780px;
-  margin: 0 auto;
-}
-
-.tools-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 16px;
-  padding: 0 20px;
-}
-
-.tool-item {
-  text-align: center;
-  padding: 24px 16px;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(44,24,16,0.06);
-  text-decoration: none;
-  color: inherit;
+.quote-card cite {
   display: block;
-  transition: transform 0.3s;
+  margin-top: 20px;
+  color: var(--green);
+  font-style: normal;
+  font-size: 0.82rem;
+  font-weight: 700;
 }
 
-.tool-item:hover {
-  transform: translateY(-2px);
-}
-
-.tool-icon {
-  font-size: 1.8rem;
-  margin-bottom: 8px;
-}
-
-.tool-name {
-  font-size: 0.9rem;
-  font-weight: 500;
-  margin-bottom: 4px;
-}
-
-.tool-desc {
-  font-size: 0.78rem;
-  color: var(--ink-light);
-}
-
-/* ===== 联系方式 ===== */
-.contact-section {
-  padding: 50px 20px;
-  text-align: center;
-  background: white;
-}
-
-.contact-lead {
-  font-family: 'Noto Serif SC', serif;
-  font-size: 1.1rem;
-  color: var(--ink-light);
-  margin: 12px 0 28px;
-}
-
-.contact-list {
-  display: flex;
-  justify-content: center;
-  gap: 32px;
-  margin-bottom: 28px;
-  font-size: 0.85rem;
-  color: var(--ink-light);
-  flex-wrap: wrap;
-}
-
-.contact-list li {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.qr-wrap {
+.more-echo {
   margin-top: 24px;
+  border: 0;
 }
 
-.qr-img {
-  width: 200px;
-  height: 200px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(44,24,16,0.12);
+.more-echo summary {
+  width: fit-content;
+  margin: 0 auto;
+  padding: 10px 18px;
+  color: var(--green);
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
 }
 
-.qr-label {
-  margin-top: 16px;
-  font-size: 0.85rem;
-  color: var(--ink-light);
+.more-echo summary::-webkit-details-marker {
+  display: none;
 }
 
-/* ===== 页脚 ===== */
-footer {
+.more-echo summary::after {
+  content: " ＋";
+}
+
+.more-echo[open] summary::after {
+  content: " －";
+}
+
+.more-content {
+  margin-top: 24px;
+  padding: 36px;
+  border-radius: 18px;
+  background: var(--paper-soft);
+}
+
+.more-content p {
+  max-width: 820px;
+  margin: 0 auto 16px;
+  color: var(--ink-soft);
+  font-family: var(--serif);
+}
+
+.more-content p:last-child {
+  margin-bottom: 0;
+}
+
+.join-section {
+  padding-top: 50px;
+}
+
+.join-card {
+  position: relative;
+  overflow: hidden;
+  padding: 70px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 70px;
+  border-radius: 28px;
+  background: var(--green-deep);
+  color: #f8f3e9;
+  box-shadow: 0 30px 80px rgba(35,66,45,0.18);
+}
+
+.join-card::before {
+  content: "";
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  left: -130px;
+  bottom: -240px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 50%;
+  box-shadow: 0 0 0 60px rgba(255,255,255,0.025), 0 0 0 120px rgba(255,255,255,0.02);
+}
+
+.join-copy {
+  position: relative;
+}
+
+.join-copy .section-kicker {
+  color: #d9b870;
+}
+
+.join-copy h2 {
+  max-width: 620px;
+  font-family: var(--serif);
+  font-size: clamp(2.1rem, 4vw, 3.4rem);
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.join-copy p {
+  max-width: 590px;
+  margin-top: 20px;
+  color: rgba(248,243,233,0.68);
+}
+
+.join-points {
+  display: flex;
+  gap: 26px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  color: #e4d5b6;
+  font-size: 0.82rem;
+}
+
+.qr-card {
+  position: relative;
+  padding: 16px 16px 14px;
+  border-radius: 18px;
+  background: #fff;
+  color: var(--ink-soft);
   text-align: center;
-  padding: 30px 20px;
-  font-size: 0.75rem;
-  color: var(--ink-light);
-  opacity: 0.6;
-  border-top: 1px solid var(--paper-dark);
+  box-shadow: 0 18px 38px rgba(0,0,0,0.18);
 }
 
-@media (max-width: 600px) {
-  .hero-main-title { font-size: 2.2rem; }
-  .hero-slogan { font-size: 1.05rem; }
-  .card-header, .card-body { padding-left: 20px; padding-right: 20px; }
-  .card-number { font-size: 2rem; }
-  .opc-grid { grid-template-columns: 1fr; }
-  .audience-grid { grid-template-columns: repeat(2, 1fr); }
-  .info-grid { grid-template-columns: 1fr; }
+.qr-card img {
+  width: 180px;
+  height: 180px;
+  display: block;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.qr-card p {
+  margin-top: 10px;
+  font-size: 0.72rem;
+}
+
+.footer {
+  padding: 48px 0 38px;
+  color: var(--ink-faint);
+  font-size: 0.76rem;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.footer a {
+  color: var(--green);
+  text-decoration: none;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .button,
+  .course-card {
+    transition: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .nav-links {
+    gap: 18px;
+  }
+
+  .nav-links li:nth-child(3) {
+    display: none;
+  }
+
+  .hero-grid,
+  .origin-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-grid {
+    gap: 30px;
+  }
+
+  .hero-copy {
+    text-align: center;
+  }
+
+  .hero-eyebrow,
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-lead,
+  .hero-note {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-visual {
+    width: min(520px, 100%);
+    min-height: 410px;
+    margin: 0 auto;
+  }
+
+  .origin-note {
+    position: static;
+  }
+
+  .dual-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dual-arrow {
+    transform: rotate(90deg);
+    justify-self: center;
+  }
+
+  .course-card {
+    grid-template-columns: 60px 1fr auto;
+  }
+
+  .course-question {
+    grid-column: 2 / -1;
+  }
+
+  .rules {
+    grid-template-columns: 1fr;
+  }
+
+  .rule {
+    padding: 12px 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .quotes {
+    grid-template-columns: 1fr;
+  }
+
+  .quote-card {
+    min-height: 0;
+  }
+
+  .join-card {
+    padding: 54px;
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .join-copy p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .join-points {
+    justify-content: center;
+  }
+
+  .qr-card {
+    justify-self: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    width: min(100% - 32px, 1080px);
+  }
+
+  .section {
+    padding: 78px 0;
+  }
+
+  .nav {
+    min-height: 64px;
+  }
+
+  .brand-text {
+    font-size: 0.9rem;
+  }
+
+  .nav-links {
+    gap: 14px;
+  }
+
+  .nav-links li:not(:last-child) {
+    display: none;
+  }
+
+  .hero {
+    padding: 64px 0 42px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.65rem, 14vw, 4rem);
+  }
+
+  .hero-lead {
+    font-size: 1.08rem;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .button {
+    padding: 0 12px;
+  }
+
+  .hero-visual {
+    min-height: 330px;
+  }
+
+  .desk {
+    bottom: 10px;
+    height: 185px;
+  }
+
+  .book {
+    left: 22px;
+    bottom: 48px;
+    width: 215px;
+    height: 142px;
+  }
+
+  .page {
+    padding: 20px 13px;
+  }
+
+  .page-title {
+    font-size: 0.8rem;
+  }
+
+  .tea {
+    right: 24px;
+    bottom: 52px;
+    width: 70px;
+    height: 70px;
+    border-width: 9px;
+  }
+
+  .tea::after {
+    top: 14px;
+    right: -29px;
+    width: 28px;
+    height: 31px;
+    border-width: 7px;
+    border-left: 0;
+  }
+
+  .pencil {
+    display: none;
+  }
+
+  .event-card {
+    grid-template-columns: auto 1fr;
+    gap: 15px;
+    padding: 20px;
+  }
+
+  .event-link {
+    grid-column: 1 / -1;
+    padding-top: 14px;
+    border-top: 1px solid rgba(80,65,48,0.12);
+    text-align: center;
+  }
+
+  .event-date {
+    width: 62px;
+    height: 62px;
+  }
+
+  .event-copy strong {
+    font-size: 1.02rem;
+  }
+
+  .origin-grid {
+    gap: 42px;
+  }
+
+  .origin-quote {
+    padding: 34px 28px 30px;
+  }
+
+  .meaning-item {
+    grid-template-columns: 46px 1fr;
+  }
+
+  .meaning-char {
+    font-size: 2rem;
+  }
+
+  .dual-card {
+    min-height: 0;
+    padding: 32px 26px;
+  }
+
+  .course-head,
+  .echo-head {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .course-progress,
+  .echo-meta {
+    text-align: left;
+  }
+
+  .course-card {
+    padding: 28px 4px;
+    grid-template-columns: 42px 1fr;
+    gap: 15px;
+  }
+
+  .course-card:hover {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  .course-no {
+    font-size: 1.4rem;
+  }
+
+  .course-main h3 {
+    font-size: 1.13rem;
+  }
+
+  .status {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .course-question {
+    grid-column: 2;
+  }
+
+  .acts {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .acts::before {
+    top: 3%;
+    bottom: 3%;
+    left: 40px;
+    right: auto;
+    width: 1px;
+    height: auto;
+    border-top: 0;
+    border-left: 1px dashed rgba(181,138,61,0.42);
+  }
+
+  .act-card {
+    padding-left: 76px;
+    text-align: left;
+  }
+
+  .act-number {
+    position: absolute;
+    left: 0;
+    top: 18px;
+    width: 68px;
+    height: 68px;
+    border-width: 10px;
+  }
+
+  .more-content {
+    padding: 28px 22px;
+  }
+
+  .join-section {
+    padding-top: 28px;
+  }
+
+  .join-card {
+    padding: 46px 24px;
+    border-radius: 22px;
+  }
+
+  .join-points {
+    display: grid;
+    gap: 8px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
 </style>
 </head>
 <body>
 
-<!-- 顶部导航 -->
-<div class="topbar">
-  <div class="brand-left">
-    <div class="brand-logo">树</div>
-    <div class="brand-name">大树 <span>Da Shu</span></div>
-  </div>
-  <div class="brand-right">
-    <span>新出路</span>
-    <div class="mountain">山</div>
-  </div>
-</div>
-
-<!-- 标语条 -->
-<div class="tagline-bar">
-  读原著<span>·</span>悟原理<span>·</span>解决实际问题<span>·</span>找到新出路
-</div>
-
-<!-- 英雄区 -->
-<div class="hero">
-  <h1 class="hero-main-title">保险创修<br>共创会</h1>
-  <p class="hero-subtitle">用经典思想，解决当下人生与事业的真实问题</p>
-  <div class="hero-badge">第二期 · 共读《实践论》</div>
-
-  <p class="hero-slogan">真理不是想出来的，是干出来的。<br>一起回到《实践论》，<span class="highlight">在实践中寻找答案</span>。</p>
-
-  <p class="hero-note">不是学习会，不是读书会，不是分享会<br><strong>而是一场围绕真实问题的共创实验</strong></p>
-</div>
-
-<!-- 核心信息 -->
-<div class="info-section">
-  <div class="info-grid">
-    <div class="info-item">
-      <div class="info-icon">🕐</div>
-      <div>
-        <div class="info-label">时间</div>
-        <div class="info-value">每周三 10:00-12:00</div>
-      </div>
-    </div>
-    <div class="info-item">
-      <div class="info-icon">💻</div>
-      <div>
-        <div class="info-label">方式</div>
-        <div class="info-value">线上腾讯会议</div>
-      </div>
-    </div>
-    <div class="info-item">
-      <div class="info-icon">👥</div>
-      <div>
-        <div class="info-label">人数</div>
-        <div class="info-value">限小范围 · 深度共创</div>
-        <div class="info-value small">名额有限，报满即止</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- 适合谁来 -->
-<div class="audience-section">
-  <h2 class="section-title">适合谁来？</h2>
-  <p class="section-desc">不限职业，但需要对真实问题有体感</p>
-  <div class="audience-grid">
-    <div class="audience-card">
-      <div class="audience-icon">🚀</div>
-      <div class="audience-name">创业者</div>
-      <div class="audience-detail">寻找突破</div>
-    </div>
-    <div class="audience-card">
-      <div class="audience-icon">🤖</div>
-      <div class="audience-name">AI探索者</div>
-      <div class="audience-detail">寻找规律</div>
-    </div>
-    <div class="audience-card">
-      <div class="audience-icon">✍️</div>
-      <div class="audience-name">内容创作者</div>
-      <div class="audience-detail">提升认知</div>
-    </div>
-    <div class="audience-card">
-      <div class="audience-icon">🧭</div>
-      <div class="audience-name">对人生有<br>真实问题的人</div>
-      <div class="audience-detail">不限身份</div>
-    </div>
-  </div>
-</div>
-
-<!-- 理念三行 -->
-<div class="philosophy-section">
-  <p class="philosophy-text">
-    <strong>在实践中学习</strong>
-    <span class="arrow">→</span>
-    <strong>在行动中验证</strong>
-    <span class="arrow">→</span>
-    <strong>在复盘中进化</strong>
-  </p>
-</div>
-
-<!-- 课表 -->
-<div class="courses-section">
-  <div class="container" style="max-width:780px;margin:0 auto;">
-    <h2 class="section-title">共读课表</h2>
-    <p class="section-desc">从入门到硬核，难度递进，逻辑连贯</p>
-
-    <div class="series-progress">
-      <div class="step"><span class="dot done"></span>反对本本主义</div>
-      <span class="arrow">→</span>
-      <div class="step"><span class="dot current"></span>实践论</div>
-      <span class="arrow">→</span>
-      <div class="step"><span class="dot pending"></span>改造我们的学习</div>
-      <span class="arrow">→</span>
-      <div class="step"><span class="dot pending"></span>矛盾论</div>
-    </div>
-  </div>
-
-  <div class="cards">
-    <a href="反对本本主义_共读页面.html" class="card done">
-      <div class="card-header">
-        <span class="card-number">01</span>
-        <h2>反对本本主义 <span class="card-status status-done">已完成</span></h2>
-        <div class="card-meta">
-          <span>1930年5月</span>
-          <span>36岁</span>
-          <span>寻乌调查后</span>
-          <span>5000字 · 15分钟</span>
-        </div>
-      </div>
-      <div class="card-body">
-        <p class="card-desc">没有调查，没有发言权。教员在最低谷时写出的战斗檄文——反对一切脱离实际的教条，强调从实地调查中找答案。</p>
-        <div class="card-tags">
-          <span class="tag tag-green">入门级</span>
-          <span class="tag tag-red">有战斗感</span>
-          <span class="tag tag-sepia">调查方法论</span>
-        </div>
-      </div>
+<header class="nav-shell">
+  <nav class="nav container" aria-label="主导航">
+    <a class="brand" href="#top">
+      <span class="brand-mark">树</span>
+      <span class="brand-text">毛选创修共读会</span>
     </a>
+    <ul class="nav-links">
+      <li><a href="#courses">共读课表</a></li>
+      <li><a href="#workshop">创修会</a></li>
+      <li><a href="#echo">精华回放</a></li>
+      <li><a href="#join">加入共创</a></li>
+    </ul>
+  </nav>
+</header>
 
-    <a href="实践论_共读页面.html" class="card next">
-      <div class="card-header">
-        <span class="card-number">02</span>
-        <h2>实践论 <span class="card-status status-next">第2期</span></h2>
-        <div class="card-meta">
-          <span>1937年7月</span>
-          <span>43岁</span>
-          <span>延安抗大讲稿</span>
-          <span>5000字 · 15分钟</span>
+<main id="top">
+  <section class="hero">
+    <div class="hero-grid container">
+      <div class="hero-copy">
+        <p class="hero-eyebrow">经典思想 × 真实问题 × 共创实践</p>
+        <h1>毛选<span>创修</span><br>共读会</h1>
+        <p class="hero-lead">用经典思想，解决当下人生与事业的真实问题。</p>
+        <p class="hero-note">读原著，悟原理，在实践中找到自己的新出路。</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#courses">查看共读课表 <span aria-hidden="true">↓</span></a>
+          <a class="button button-secondary" href="#join">加入共创 <span aria-hidden="true">→</span></a>
         </div>
       </div>
-      <div class="card-body">
-        <p class="card-desc">调查→实践→认识→再实践→再认识。跟第1期无缝衔接：反对本本主义教"怎么调查"，实践论教"调查完了怎么变成认知"。</p>
-        <div class="card-tags">
-          <span class="tag tag-blue">进阶级</span>
-          <span class="tag tag-sepia">认识论</span>
-          <span class="tag tag-green">顺着走</span>
-        </div>
-      </div>
-    </a>
 
-    <div class="card later" style="cursor:default;">
-      <div class="card-header">
-        <span class="card-number">03</span>
-        <h2>改造我们的学习 <span class="card-status status-later">待制作</span></h2>
-        <div class="card-meta">
-          <span>1941年5月</span>
-          <span>47岁</span>
-          <span>延安整风开篇</span>
-          <span>4000字 · 12分钟</span>
+      <div class="hero-visual" aria-label="午后阳光下，木桌上放着翻开的《实践论》、茶与手写笔记">
+        <div class="sunlight"></div>
+        <div class="leaf-shadow"></div>
+        <div class="desk"></div>
+        <div class="book">
+          <div class="page page-left">
+            <div class="page-title">实践论</div>
+            <div class="page-rule"></div>
+            <div class="page-lines"></div>
+          </div>
+          <div class="page page-right">
+            <div class="page-lines"></div>
+            <div class="hand-note">真理从实践中来</div>
+          </div>
+          <div class="book-spine"></div>
         </div>
-      </div>
-      <div class="card-body">
-        <p class="card-desc">墙上芦苇，头重脚轻根底浅；山间竹笋，嘴尖皮厚腹中空。教员用最生动的比喻批判教条主义学风，提倡实事求是。</p>
-        <div class="card-tags">
-          <span class="tag tag-blue">落地级</span>
-          <span class="tag tag-red">有组织感</span>
-          <span class="tag tag-sepia">学风建设</span>
-        </div>
+        <div class="tea"></div>
+        <div class="pencil"></div>
       </div>
     </div>
+  </section>
 
-    <div class="card later" style="cursor:default;">
-      <div class="card-header">
-        <span class="card-number">04</span>
-        <h2>矛盾论 <span class="card-status status-later">待制作</span></h2>
-        <div class="card-meta">
-          <span>1937年8月</span>
-          <span>43岁</span>
-          <span>实践论姊妹篇</span>
-          <span>10000+字 · 35分钟</span>
+  <div class="event-wrap container reveal">
+    <div class="event-card">
+      <div class="event-date">6月10日<span>周三</span></div>
+      <div class="event-copy">
+        <strong>第 2 期共读 ·《实践论》</strong>
+        <p>10:00–12:00 · 线上腾讯会议 · 带着一个真实问题来</p>
+      </div>
+      <a class="event-link" href="#join">立即加入 →</a>
+    </div>
+  </div>
+
+  <section class="section" id="origin">
+    <div class="origin-grid container">
+      <div class="origin-note reveal">
+        <p class="section-kicker">WHY WE GATHER</p>
+        <h2 class="section-title">不是来寻找标准答案，<br>是来生成自己的答案。</h2>
+        <p class="section-desc">借毛选这把刀，砍自己的柴。经典不是供起来的知识，而是重新看见现实、理解问题、推动行动的方法。</p>
+      </div>
+
+      <div>
+        <div class="origin-quote reveal">
+          <p>这件事我酝酿了三年。「创」是创业，是用思想看见事业的本质；「修」是修行修心，是借由经典不断修正自己。一个人读可能读不进去，但当我们带着各自的真实问题坐在一起，思想才真正开始发生。</p>
+          <div class="origin-sign">大树 · 发起人</div>
+        </div>
+
+        <div class="meaning-list reveal">
+          <div class="meaning-item">
+            <div class="meaning-char">创</div>
+            <div>
+              <h3>创造自己的事业答案</h3>
+              <p>不抄别人的作业，从自己的处境、用户和实践中找路。</p>
+            </div>
+          </div>
+          <div class="meaning-item">
+            <div class="meaning-char">修</div>
+            <div>
+              <h3>修正自己的认识与行动</h3>
+              <p>不追求一次想通，在行动、反馈与复盘中持续校准。</p>
+            </div>
+          </div>
+          <div class="meaning-item">
+            <div class="meaning-char">共</div>
+            <div>
+              <h3>让真实碰撞生成新答案</h3>
+              <p>不是一个人输出、所有人听，而是你说我记，彼此成为调查样本。</p>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="card-body">
-        <p class="card-desc">对立统一规律是宇宙的根本规律。前三期建立语感后，挑战这篇纯哲学论文——适合反复啃，共读抓核心论点。</p>
-        <div class="card-tags">
-          <span class="tag tag-red">硬核级</span>
-          <span class="tag tag-blue">纯哲学</span>
-          <span class="tag tag-sepia">辩证法</span>
+    </div>
+  </section>
+
+  <section class="section dual-section" id="dual">
+    <div class="container">
+      <div class="reveal">
+        <p class="section-kicker">TWO PATHS, ONE PRACTICE</p>
+        <h2 class="section-title">一条读进去，一条做出来。</h2>
+        <p class="section-desc">共读负责打开认识，创修负责把认识翻译成现实行动。两条线彼此连接，形成从经典到实践的完整闭环。</p>
+      </div>
+
+      <div class="dual-grid reveal">
+        <article class="dual-card">
+          <div class="dual-number">01 · INPUT</div>
+          <h3>共读系列</h3>
+          <p>回到原文与历史处境，理解思想是如何从真实问题中生长出来的。</p>
+          <ul class="dual-list">
+            <li><span>定位</span><strong>读原文 · 认知输入</strong></li>
+            <li><span>形式</span><strong>轮流朗读 · 开放讨论</strong></li>
+            <li><span>产出</span><strong>理解一套方法</strong></li>
+          </ul>
+        </article>
+
+        <div class="dual-arrow" aria-hidden="true">→</div>
+
+        <article class="dual-card">
+          <div class="dual-number">02 · OUTPUT</div>
+          <h3>毛选创修会</h3>
+          <p>带着一个真实难题入场，用 AI 与方法论把问题翻译成三天内可执行的动作。</p>
+          <ul class="dual-list">
+            <li><span>定位</span><strong>用方法 · 行动输出</strong></li>
+            <li><span>形式</span><strong>AI 对话 · 共创翻译</strong></li>
+            <li><span>产出</span><strong>个人行动纲领</strong></li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="courses">
+    <div class="container">
+      <div class="course-head reveal">
+        <div>
+          <p class="section-kicker">READING JOURNEY</p>
+          <h2 class="section-title">四期共读路径</h2>
+          <p class="section-desc">不是按名篇罗列，而是沿着“调查、实践、认识、矛盾”逐步建立解决真实问题的能力。</p>
+        </div>
+        <p class="course-progress"><strong>01</strong> / 04 已完成</p>
+      </div>
+
+      <div class="course-list reveal">
+        <a class="course-card" href="反对本本主义_共读页面.html">
+          <div class="course-no">01</div>
+          <div class="course-main">
+            <h3>《反对本本主义》</h3>
+            <p class="course-meta">1930 · 36 岁 · 调查方法论</p>
+          </div>
+          <div class="course-question">
+            <strong>解决什么问题？</strong>
+            不抄作业，做自己的市场调查。
+          </div>
+          <span class="status status-done">已完成</span>
+        </a>
+
+        <a class="course-card" href="实践论_共读页面.html">
+          <div class="course-no">02</div>
+          <div class="course-main">
+            <h3>《实践论》</h3>
+            <p class="course-meta">1937 · 43 岁 · 认识论</p>
+          </div>
+          <div class="course-question">
+            <strong>解决什么问题？</strong>
+            先干起来，在实战中迭代认知。
+          </div>
+          <span class="status status-now">本期共读</span>
+        </a>
+
+        <a class="course-card" href="#join">
+          <div class="course-no">03</div>
+          <div class="course-main">
+            <h3>《改造我们的学习》</h3>
+            <p class="course-meta">1941 · 47 岁 · 学风建设</p>
+          </div>
+          <div class="course-question">
+            <strong>解决什么问题？</strong>
+            把碎片学习变成自己的认知系统。
+          </div>
+          <span class="status status-later">即将上线</span>
+        </a>
+
+        <a class="course-card" href="矛盾论_共读页面.html">
+          <div class="course-no">04</div>
+          <div class="course-main">
+            <h3>《矛盾论》</h3>
+            <p class="course-meta">1937 · 43 岁 · 辩证法</p>
+          </div>
+          <div class="course-question">
+            <strong>解决什么问题？</strong>
+            在十个难题中，找到那个主要矛盾。
+          </div>
+          <span class="status status-later">开放预习</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section workshop-section" id="workshop">
+    <div class="container">
+      <div class="workshop-intro reveal">
+        <p class="section-kicker">THE WORKSHOP</p>
+        <h2 class="section-title">九十分钟，把思想翻译成行动。</h2>
+        <p class="section-desc">创修会不是听完觉得有道理，而是经历一次完整的“问题澄清—方法翻译—行动生成”。</p>
+      </div>
+
+      <div class="acts reveal">
+        <article class="act-card">
+          <div class="act-number">第一幕</div>
+          <h3>AI 对话毛选</h3>
+          <p>用经典中的方法追问现实问题，逼自己把模糊感受说清楚。</p>
+        </article>
+        <article class="act-card">
+          <div class="act-number">第二幕</div>
+          <h3>方法论翻译器</h3>
+          <p>从原文核心，到我的场景，再到三天内可以完成的动作。</p>
+        </article>
+        <article class="act-card">
+          <div class="act-number">第三幕</div>
+          <h3>生成个人纲领</h3>
+          <p>用 AI 整理口述与共创结果，形成一份清晰的行动方案。</p>
+        </article>
+      </div>
+
+      <div class="rules reveal">
+        <div class="rules-title">三条铁律</div>
+        <div class="rule">不带真实问题，不准入场</div>
+        <div class="rule">不产出行动方案，不准离场</div>
+        <div class="rule">不讲学到了什么，只讲接下来做什么</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="echo">
+    <div class="container">
+      <div class="echo-head reveal">
+        <div>
+          <p class="section-kicker">VOICES FROM THE ROOM</p>
+          <h2 class="section-title">第一期，现场发生了什么？</h2>
+        </div>
+        <p class="echo-meta">《反对本本主义》<br>2026 年 6 月 2 日 · 9 人共读</p>
+      </div>
+
+      <div class="quotes reveal">
+        <article class="quote-card">
+          <div class="quote-mark">“</div>
+          <blockquote>我们不是一起读书，而是先跟 AI 开一场共创会。带着我和 AI 讨论过的方案，再来分享。</blockquote>
+          <cite>一鸣</cite>
+        </article>
+        <article class="quote-card">
+          <div class="quote-mark">“</div>
+          <blockquote>共创会就是调查会。来参与的人都是潜在用户，他们提供的视角就是之后需要注意的部分。</blockquote>
+          <cite>帅妞</cite>
+        </article>
+        <article class="quote-card">
+          <div class="quote-mark">“</div>
+          <blockquote>把问题描述清晰，就等于问题已经被解决一半。调研就是收集、罗列、捋清楚。</blockquote>
+          <cite>文霞</cite>
+        </article>
+      </div>
+
+      <details class="more-echo reveal">
+        <summary>展开更多现场回声</summary>
+        <div class="more-content">
+          <p><strong>楠楠：</strong>每次做项目前期，能不能设一个调查期？除了共创会、用户访谈，还有什么更好的调研方法？</p>
+          <p><strong>佩奇：</strong>每周发布一个主题，选一句话，大家接龙生活中的真实问题。读完之后打卡小挑战，落地到现实。</p>
+          <p><strong>沐阳：</strong>团结一切可以团结的力量。散兵游勇很容易陷入主观困难，当我们聚在一起，星星之火可以燎原。</p>
+          <p><strong>大树：</strong>我找到了想要的形式：先分享彼此想解决的问题，然后共读，然后讨论。这就是毛选、一人公司、AI 和共创会的结合。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="section join-section" id="join">
+    <div class="container">
+      <div class="join-card reveal">
+        <div class="join-copy">
+          <p class="section-kicker">JOIN THE CIRCLE</p>
+          <h2>带着一个真实问题来，<br>带着一个行动方案走。</h2>
+          <p>如果你正在创业、探索一人公司，或正被人生与事业中的具体难题困住，欢迎扫码联系大树，一起读、一起想、一起做。</p>
+          <div class="join-points">
+            <span>读原著，不读二手答案</span>
+            <span>谈问题，不谈空泛道理</span>
+            <span>做行动，不止于认同</span>
+          </div>
+        </div>
+        <div class="qr-card">
+          <img src="wechat-qr.jpg" alt="大树微信二维码" width="180" height="180">
+          <p>扫码联系大树 · 北京海淀</p>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </section>
+</main>
 
-<!-- 精华回放 -->
-<div class="highlight-section">
-  <div class="container" style="max-width:780px;margin:0 auto;">
-    <h2 class="section-title">第1期精华回放</h2>
-    <p class="section-desc">《反对本本主义》· 2026年6月2日 · 9人共读</p>
+<footer class="footer">
+  <div class="footer-inner container">
+    <p>毛选创修共读会 · 人 + AI 共创 · 2026</p>
+    <p>读原著 · 悟原理 · 回到实践 · <a href="https://github.com/shuskipper512-blip/maoxuan-methodology-reading" target="_blank" rel="noopener noreferrer">GitHub</a></p>
   </div>
-
-  <div class="highlight-block">
-    <div class="highlight-label">大树：为什么办这个创修会</div>
-    <p class="highlight-text">这件事我酝酿了三年。<strong>「创」</strong>是创业——想创业的伙伴怎么通过毛选看到创业的本质；<strong>「修」</strong>是修行修心——教员本身是一个一直在修的人，如何通过他来修正自己。</p>
-    <p class="highlight-text">一个人看毛选是看不进去的，但借由这本书借由这些理念来返回自己的生活，本身是一个很好的圈层吸引器——能读毛选的人，本身都有一些特质。</p>
-    <p class="highlight-text">在一个很关键的转折期，我看不到出路在哪。那时候我读到矛盾论：抓主要矛盾。我就想，我做的"新出路"，核心矛盾是什么？不是赚钱，是<strong>就业</strong>——一个人如何找到他热爱的事业。可以说因为有毛选的指引，我才走上了项目合伙这条路。</p>
-    <p class="highlight-text">任何一个组织、任何一个人，都需要有文化、有精神。一个想做 IP 的人，传递的一定不只是自己的精神，而是依托于更大的智慧。教员完整记录了他从 20 多岁到 60 多岁不同年龄阶段的决策——<strong>简直就是一个创业宝典</strong>。</p>
-  </div>
-
-  <div class="quotes-grid">
-    <div class="quote-card">
-      <div class="quote-person">一鸣</div>
-      <p class="quote-text">"我们不是一起读书，而是先跟 AI 去开共创会——怎么用毛选解决我的问题。然后带着我和 AI 讨论完的方案来做分享。"</p>
-    </div>
-    <div class="quote-card">
-      <div class="quote-person">帅妞</div>
-      <p class="quote-text">"共创会就是调查会——来参与共创的人都是你的潜在用户，他们提供的视角就是之后群体里需要注意的部分。"</p>
-    </div>
-    <div class="quote-card">
-      <div class="quote-person">楠楠</div>
-      <p class="quote-text">"每次做项目前期，能不能设一个调查期？除了共创会、用户访谈，还有什么更好的调研方法？特别是 2-3 个月的短期项目。"</p>
-    </div>
-    <div class="quote-card">
-      <div class="quote-person">佩奇</div>
-      <p class="quote-text">"每周发布一个主题，选一句话，大家接龙生活中的真实问题。读完之后打卡小挑战，落地到现实。"</p>
-    </div>
-    <div class="quote-card">
-      <div class="quote-person">沐阳</div>
-      <p class="quote-text">"团结一切可以团结的力量，散兵游勇单兵作战很容易陷入主观困难。当我们聚在一起的时候，星星之火可以燎原。"</p>
-    </div>
-    <div class="quote-card">
-      <div class="quote-person">文霞</div>
-      <p class="quote-text">"把问题描述清晰，就等于问题已经被解决一半了。调研就是收集、罗列、捋清楚，就能解决问题的一大半。"</p>
-    </div>
-  </div>
-
-  <div class="highlight-block light" style="max-width:780px;margin:0 auto 32px;">
-    <div class="highlight-label">大树：第1期收获</div>
-    <p class="highlight-text">找到了我想要的形式。经由大家今天的分享和碰撞，尤其是每个人的不同视角，我就觉得找到那个感觉了——先分享彼此想解决的问题，然后共读，然后讨论。</p>
-    <p class="highlight-text">这就是 <strong>毛选 + 一人公司 + AI + 共创会</strong> 的结合。今天的材料全是 AI 帮我生成的，课表也排好了，下一期的内容也准备好了。</p>
-  </div>
-</div>
-
-<!-- 一人公司映射 -->
-<div class="opc-section">
-  <div class="container" style="max-width:780px;margin:0 auto;">
-    <h2 class="section-title">一人公司行动映射</h2>
-    <p class="section-desc">每篇方法论，都对应创业者的真实困境</p>
-  </div>
-  <div class="opc-grid">
-    <div class="opc-card">
-      <h3>不抄作业</h3>
-      <p>别拿别人的模板当圣经，做自己的市场调研</p>
-    </div>
-    <div class="opc-card">
-      <h3>先干起来</h3>
-      <p>不要等想清楚了再干，干的过程中才能想清楚</p>
-    </div>
-    <div class="opc-card">
-      <h3>建立系统</h3>
-      <p>从碎片化学习升级为自己的认知操作系统</p>
-    </div>
-    <div class="opc-card">
-      <h3>抓主要矛盾</h3>
-      <p>同时面临十个问题？找到那个解决了就全通了的</p>
-    </div>
-  </div>
-</div>
-
-<!-- 系列物料 -->
-<div class="tools-section">
-  <h2 class="section-title">系列物料</h2>
-  <p class="section-desc">HTML 共读页面由 AI 生成，一人公司解读逐篇定制</p>
-  <div class="tools-grid">
-    <a href="方法论共读课表.html" class="tool-item">
-      <div class="tool-icon">📋</div>
-      <div class="tool-name">课表总览</div>
-      <div class="tool-desc">四期排期与难度递进</div>
-    </a>
-    <div class="tool-item">
-      <div class="tool-icon">🤖</div>
-      <div class="tool-name">AI 协作</div>
-      <div class="tool-desc">WorkBuddy + Claude Code</div>
-    </div>
-    <div class="tool-item">
-      <div class="tool-icon">📝</div>
-      <div class="tool-name">会议记录</div>
-      <div class="tool-desc">逐字稿存档</div>
-    </div>
-    <div class="tool-item">
-      <div class="tool-icon">📁</div>
-      <div class="tool-name">源文件</div>
-      <div class="tool-desc">Markdown 原始材料</div>
-    </div>
-  </div>
-</div>
-
-<!-- 联系方式 -->
-<div class="contact-section">
-  <h2 class="section-title">加入共读</h2>
-  <p class="contact-lead">扫码联系大树，一起来读</p>
-  <ul class="contact-list">
-    <li>📖 读读原著</li>
-    <li>💡 悟悟原理</li>
-    <li>🌍 一起用思想改变现实</li>
-  </ul>
-  <div class="qr-wrap">
-    <img src="wechat-qr.jpg" alt="大树微信二维码" class="qr-img">
-    <p class="qr-label">大树 #新出路 · 北京海淀</p>
-  </div>
-</div>
-
-<footer>
-  保险创修共创会 · 大树 · 人 + AI 共创 · 2026
 </footer>
 
+<script>
+const revealItems = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  revealItems.forEach((item) => revealObserver.observe(item));
+} else {
+  revealItems.forEach((item) => item.classList.add("visible"));
+}
+</script>
 </body>
 </html>

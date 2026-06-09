@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>方法论共读系列 · 课表</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+  :root {
+    --ink: #1a1208;
+    --paper: #f7f2e8;
+    --sepia-light: #ede5d0;
+    --sepia-mid: #c9b99a;
+    --sepia-dark: #8b6f47;
+    --red: #c0392b;
+    --red-light: #f8e8e6;
+    --amber: #d4820a;
+    --amber-light: #fef3e2;
+    --green: #2d6a4f;
+    --green-light: #eaf4ef;
+    --blue: #1a4a7a;
+    --blue-light: #e8f0fa;
+    --accent: #7c3f1e;
+    --stamp-red: #b5342a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', 'PingFang SC', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.8;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .poster {
+    max-width: 680px;
+    margin: 0 auto;
+    background: var(--paper);
+    position: relative;
+  }
+
+  /* ── 顶部横幅 ── */
+  .banner {
+    position: relative;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 48px 36px 40px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .banner::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.03) 39px, rgba(255,255,255,0.03) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.03) 39px, rgba(255,255,255,0.03) 40px);
+  }
+
+  .banner-tag {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 3px 14px;
+    font-size: 11px;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+    opacity: 0.7;
+    position: relative;
+  }
+
+  .banner-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    line-height: 1.2;
+    margin-bottom: 6px;
+    position: relative;
+  }
+
+  .banner-sub {
+    font-size: 13px;
+    opacity: 0.55;
+    letter-spacing: 2px;
+    position: relative;
+  }
+
+  /* ── 设计逻辑区 ── */
+  .logic-bar {
+    background: var(--sepia-light);
+    border-bottom: 1px solid var(--sepia-mid);
+    padding: 20px 36px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .logic-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 2px;
+    flex-shrink: 0;
+  }
+
+  .logic-flow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--sepia-dark);
+    flex-wrap: wrap;
+  }
+
+  .logic-step {
+    background: var(--paper);
+    border: 1px solid var(--sepia-mid);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .logic-arrow {
+    color: var(--sepia-mid);
+    font-size: 14px;
+  }
+
+  /* ── 课表主体 ── */
+  .schedule {
+    padding: 28px 28px 12px;
+  }
+
+  .course {
+    position: relative;
+    display: flex;
+    gap: 20px;
+    padding: 24px 0 28px;
+    border-bottom: 1px dashed var(--sepia-mid);
+  }
+
+  .course:last-child {
+    border-bottom: none;
+  }
+
+  /* 左侧时间线 */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    width: 56px;
+    position: relative;
+  }
+
+  .timeline-num {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 900;
+    font-size: 22px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .timeline-year {
+    font-size: 12px;
+    color: var(--sepia-dark);
+    margin-top: 6px;
+    font-weight: 500;
+  }
+
+  .timeline-line {
+    width: 2px;
+    flex: 1;
+    background: var(--sepia-mid);
+    margin-top: 8px;
+  }
+
+  .course:last-child .timeline-line {
+    display: none;
+  }
+
+  /* 右侧内容 */
+  .content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .course-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    gap: 12px;
+  }
+
+  .course-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .course-badge {
+    flex-shrink: 0;
+    padding: 3px 12px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-top: 4px;
+    white-space: nowrap;
+  }
+
+  .course-meta {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: var(--sepia-dark);
+    flex-wrap: wrap;
+  }
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .meta-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .course-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--ink);
+    opacity: 0.82;
+  }
+
+  .course-mapping {
+    margin-top: 10px;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .mapping-label {
+    font-weight: 700;
+    margin-right: 6px;
+  }
+
+  /* ── 第1期样式（完成）── */
+  .course-1 .timeline-num {
+    background: var(--green);
+    color: #fff;
+  }
+
+  .course-1 .course-title::after {
+    content: ' ✓';
+    color: var(--green);
+    font-size: 18px;
+  }
+
+  .course-1 .course-badge {
+    background: var(--green-light);
+    color: var(--green);
+    border: 1px solid var(--green);
+  }
+
+  .course-1 .meta-dot { background: var(--green); }
+
+  .course-1 .course-mapping {
+    background: var(--green-light);
+    border-left: 3px solid var(--green);
+  }
+
+  /* ── 第2期样式（实践论）── */
+  .course-2 .timeline-num {
+    background: var(--amber);
+    color: #fff;
+  }
+
+  .course-2 .course-badge {
+    background: var(--amber-light);
+    color: var(--amber);
+    border: 1px solid var(--amber);
+  }
+
+  .course-2 .meta-dot { background: var(--amber); }
+
+  .course-2 .course-mapping {
+    background: var(--amber-light);
+    border-left: 3px solid var(--amber);
+  }
+
+  /* ── 第3期样式（改造学习）── */
+  .course-3 .timeline-num {
+    background: var(--blue);
+    color: #fff;
+  }
+
+  .course-3 .course-badge {
+    background: var(--blue-light);
+    color: var(--blue);
+    border: 1px solid var(--blue);
+  }
+
+  .course-3 .meta-dot { background: var(--blue); }
+
+  .course-3 .course-mapping {
+    background: var(--blue-light);
+    border-left: 3px solid var(--blue);
+  }
+
+  /* ── 第4期样式（矛盾论）── */
+  .course-4 .timeline-num {
+    background: var(--red);
+    color: #fff;
+  }
+
+  .course-4 .course-badge {
+    background: var(--red-light);
+    color: var(--red);
+    border: 1px solid var(--red);
+  }
+
+  .course-4 .meta-dot { background: var(--red); }
+
+  .course-4 .course-mapping {
+    background: var(--red-light);
+    border-left: 3px solid var(--red);
+  }
+
+  /* ── 底部说明 ── */
+  .footer {
+    padding: 16px 36px 32px;
+    text-align: center;
+  }
+
+  .footer-note {
+    font-size: 11px;
+    color: var(--sepia-dark);
+    line-height: 1.7;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .footer-stamp {
+    margin-top: 16px;
+    display: inline-block;
+    border: 2px solid var(--stamp-red);
+    color: var(--stamp-red);
+    padding: 4px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    transform: rotate(-3deg);
+    opacity: 0.7;
+  }
+
+  /* ── 难度条 ── */
+  .diff-bar {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+    margin-top: 8px;
+  }
+
+  .diff-seg {
+    height: 6px;
+    border-radius: 3px;
+    width: 28px;
+  }
+
+  .diff-seg.active { opacity: 1; }
+  .diff-seg.inactive { opacity: 0.2; }
+
+  .diff-label {
+    font-size: 10px;
+    margin-left: 8px;
+    color: var(--sepia-dark);
+    font-weight: 500;
+  }
+
+  /* 响应式 */
+  @media (max-width: 480px) {
+    .poster { max-width: 100%; }
+    .banner { padding: 36px 20px 32px; }
+    .banner-title { font-size: 26px; }
+    .schedule { padding: 20px 16px 8px; }
+    .course { gap: 14px; padding: 18px 0 22px; }
+    .timeline { width: 46px; }
+    .timeline-num { width: 40px; height: 40px; font-size: 18px; }
+    .course-title { font-size: 18px; }
+    .logic-bar { padding: 14px 20px; }
+    .footer { padding: 12px 20px 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 顶部横幅 -->
+  <div class="banner">
+    <div class="banner-tag">一人公司共创行动 · 共读系列</div>
+    <div class="banner-title">方法论共读课表</div>
+    <div class="banner-sub">从教员文章中，提取一人公司的行动方法</div>
+  </div>
+
+  <!-- 设计逻辑 -->
+  <div class="logic-bar">
+    <span class="logic-label">阅读逻辑</span>
+    <div class="logic-flow">
+      <span class="logic-step">调查</span>
+      <span class="logic-arrow">→</span>
+      <span class="logic-step">实践</span>
+      <span class="logic-arrow">→</span>
+      <span class="logic-step">认识</span>
+      <span class="logic-arrow">→</span>
+      <span class="logic-step">再实践</span>
+      <span class="logic-arrow">→</span>
+      <span class="logic-step">方法论沉淀</span>
+    </div>
+  </div>
+
+  <!-- 课表主体 -->
+  <div class="schedule">
+
+    <!-- 第1期 -->
+    <div class="course course-1">
+      <div class="timeline">
+        <div class="timeline-num">1</div>
+        <div class="timeline-year">1930</div>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="content">
+        <div class="course-head">
+          <div class="course-title">反对本本主义</div>
+          <div class="course-badge">已完成</div>
+        </div>
+        <div class="course-meta">
+          <span class="meta-item"><span class="meta-dot"></span>36岁 · 寻乌</span>
+          <span class="meta-item"><span class="meta-dot"></span>4000字 · 12分钟</span>
+          <span class="meta-item"><span class="meta-dot"></span>入门 · 有战斗感</span>
+        </div>
+        <div class="course-desc">
+          "没有调查，没有发言权。" 教员最接地气的一篇方法论，通篇在骂教条主义，语言锋利，节奏极好。
+        </div>
+        <div class="diff-bar">
+          <span class="diff-seg active" style="background:var(--green)"></span>
+          <span class="diff-seg inactive" style="background:var(--green)"></span>
+          <span class="diff-seg inactive" style="background:var(--green)"></span>
+          <span class="diff-seg inactive" style="background:var(--green)"></span>
+          <span class="diff-label">难度 ★☆☆☆</span>
+        </div>
+        <div class="course-mapping">
+          <span class="mapping-label">一人公司：</span>不抄作业，做自己的市场调研；"调查就是解决问题"。
+        </div>
+      </div>
+    </div>
+
+    <!-- 第2期 -->
+    <div class="course course-2">
+      <div class="timeline">
+        <div class="timeline-num">2</div>
+        <div class="timeline-year">1937</div>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="content">
+        <div class="course-head">
+          <div class="course-title">实践论</div>
+          <div class="course-badge">进阶</div>
+        </div>
+        <div class="course-meta">
+          <span class="meta-item"><span class="meta-dot"></span>43岁 · 延安</span>
+          <span class="meta-item"><span class="meta-dot"></span>5000字 · 15-18分钟</span>
+          <span class="meta-item"><span class="meta-dot"></span>比喻丰富 · 节奏感好</span>
+        </div>
+        <div class="course-desc">
+          跟第1期无缝衔接。本本主义讲"调查→解决问题"，实践论讲"实践→认识→再实践→再认识"的循环。有大量比喻（"你要知道梨子的滋味，就得变革梨子"），共读友好。
+        </div>
+        <div class="diff-bar">
+          <span class="diff-seg active" style="background:var(--amber)"></span>
+          <span class="diff-seg active" style="background:var(--amber)"></span>
+          <span class="diff-seg inactive" style="background:var(--amber)"></span>
+          <span class="diff-seg inactive" style="background:var(--amber)"></span>
+          <span class="diff-label">难度 ★★☆☆</span>
+        </div>
+        <div class="course-mapping">
+          <span class="mapping-label">一人公司：</span>先干起来，在实战中迭代认知，不要等"想清楚"再动手。
+        </div>
+      </div>
+    </div>
+
+    <!-- 第3期 -->
+    <div class="course course-3">
+      <div class="timeline">
+        <div class="timeline-num">3</div>
+        <div class="timeline-year">1941</div>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="content">
+        <div class="course-head">
+          <div class="course-title">改造我们的学习</div>
+          <div class="course-badge">落地</div>
+        </div>
+        <div class="course-meta">
+          <span class="meta-item"><span class="meta-dot"></span>47岁 · 延安</span>
+          <span class="meta-item"><span class="meta-dot"></span>4000字 · 12-15分钟</span>
+          <span class="meta-item"><span class="meta-dot"></span>有组织感 · 痛快淋漓</span>
+        </div>
+        <div class="course-desc">
+          延安整风开篇，批判"墙上芦苇，头重脚轻根底浅；山间竹笋，嘴尖皮厚腹中空"。从学风入手，把前面两期的方法论收束成可操作的学习态度。
+        </div>
+        <div class="diff-bar">
+          <span class="diff-seg active" style="background:var(--blue)"></span>
+          <span class="diff-seg active" style="background:var(--blue)"></span>
+          <span class="diff-seg active" style="background:var(--blue)"></span>
+          <span class="diff-seg inactive" style="background:var(--blue)"></span>
+          <span class="diff-label">难度 ★★★☆</span>
+        </div>
+        <div class="course-mapping">
+          <span class="mapping-label">一人公司：</span>建立自己的认知系统，不做碎片化学习的"芦苇"和"竹笋"。
+        </div>
+      </div>
+    </div>
+
+    <!-- 第4期 -->
+    <div class="course course-4">
+      <div class="timeline">
+        <div class="timeline-num">4</div>
+        <div class="timeline-year">1937</div>
+      </div>
+      <div class="content">
+        <div class="course-head">
+          <div class="course-title">矛盾论</div>
+          <div class="course-badge">硬核</div>
+        </div>
+        <div class="course-meta">
+          <span class="meta-item"><span class="meta-dot"></span>43岁 · 延安</span>
+          <span class="meta-item"><span class="meta-dot"></span>10000+字 · 35-40分钟</span>
+          <span class="meta-item"><span class="meta-dot"></span>纯哲学 · 抽象密度极高</span>
+        </div>
+        <div class="course-desc">
+          前三期建好语感和节奏，再挑战这篇硬核哲学。适合一个人反复啃，共读时抓核心论点即可。"主要矛盾""矛盾转化""内因外因"——每一条都是创业者的高维武器。
+        </div>
+        <div class="diff-bar">
+          <span class="diff-seg active" style="background:var(--red)"></span>
+          <span class="diff-seg active" style="background:var(--red)"></span>
+          <span class="diff-seg active" style="background:var(--red)"></span>
+          <span class="diff-seg active" style="background:var(--red)"></span>
+          <span class="diff-label">难度 ★★★★</span>
+        </div>
+        <div class="course-mapping">
+          <span class="mapping-label">一人公司：</span>找到核心瓶颈集中突破；矛盾会转化，今天的优势可能是明天的劣势。
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 底部 -->
+  <div class="footer">
+    <div class="footer-note">
+      难度递进，前三期建立方法论语感，第四期挑战硬核哲学。<br>
+      先跑通二期，看大家体力，再定后半程。
+    </div>
+    <div class="footer-stamp">一人公司共创行动</div>
+  </div>
+
+</div>
+</body>
+</html>

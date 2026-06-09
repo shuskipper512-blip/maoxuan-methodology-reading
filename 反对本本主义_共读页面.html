@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《反对本本主义》· 共读 × 一人公司</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+  :root {
+    --ink: #1a1208;
+    --paper: #f7f2e8;
+    --sepia-light: #ede5d0;
+    --sepia-mid: #c9b99a;
+    --sepia-dark: #8b6f47;
+    --red: #c0392b;
+    --red-light: #f8e8e6;
+    --amber: #d4820a;
+    --amber-light: #fef3e2;
+    --green: #2d6a4f;
+    --green-light: #eaf4ef;
+    --blue: #1a4a7a;
+    --blue-light: #e8f0fa;
+    --accent: #7c3f1e;
+    --stamp-red: #b5342a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans SC', 'PingFang SC', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.8;
+    font-size: 16px;
+  }
+
+  /* ── 顶部英雄区 ── */
+  .hero {
+    position: relative;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 80px 40px 60px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: 
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.03) 39px, rgba(255,255,255,0.03) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.03) 39px, rgba(255,255,255,0.03) 40px);
+  }
+
+  .hero-tag {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 4px 14px;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    opacity: 0.7;
+  }
+
+  .hero-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(36px, 8vw, 72px);
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    position: relative;
+  }
+
+  .hero-subtitle {
+    font-size: 13px;
+    opacity: 0.5;
+    letter-spacing: 2px;
+    margin-bottom: 32px;
+  }
+
+  .hero-meta {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    opacity: 0.6;
+  }
+
+  .hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+  /* ── 导航栏 ── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(247,242,232,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--sepia-mid);
+    padding: 0 40px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+
+  .nav a {
+    display: block;
+    padding: 14px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+  }
+
+  .nav a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* ── 主体容器 ── */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .section {
+    padding: 60px 0 40px;
+    border-bottom: 1px solid var(--sepia-light);
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--sepia-dark);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .section-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 28px;
+    color: var(--ink);
+    border-left: 3px solid var(--accent);
+    padding-left: 16px;
+  }
+
+  /* ── 速览卡片 ── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--sepia-mid);
+    border: 1px solid var(--sepia-mid);
+    margin-bottom: 32px;
+  }
+
+  .info-cell {
+    background: var(--paper);
+    padding: 16px 20px;
+  }
+
+  .info-cell-label {
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--sepia-dark);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+
+  .info-cell-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  /* ── 思维导图 ── */
+  .mindmap-wrapper {
+    background: var(--sepia-light);
+    border: 1px solid var(--sepia-mid);
+    padding: 40px 20px;
+    margin: 24px 0 32px;
+    overflow-x: auto;
+  }
+
+  .mindmap {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    min-width: 700px;
+  }
+
+  .mm-center {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 18px 24px;
+    text-align: center;
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 700;
+    font-size: 15px;
+    min-width: 120px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  .mm-branches {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    flex: 1;
+  }
+
+  .mm-branch {
+    display: flex;
+    align-items: center;
+    padding: 6px 0;
+  }
+
+  .mm-line {
+    height: 2px;
+    background: var(--sepia-mid);
+    width: 30px;
+    flex-shrink: 0;
+  }
+
+  .mm-node {
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    margin-left: 0;
+    flex-shrink: 0;
+  }
+
+  .mm-node.type-a { background: var(--red-light); color: var(--red); border: 1px solid #e8c0bc; }
+  .mm-node.type-b { background: var(--amber-light); color: var(--amber); border: 1px solid #f0d8a8; }
+  .mm-node.type-c { background: var(--green-light); color: var(--green); border: 1px solid #b8dac9; }
+  .mm-node.type-d { background: var(--blue-light); color: var(--blue); border: 1px solid #b8cceb; }
+
+  .mm-sub-line { height: 1px; background: var(--sepia-light); width: 20px; flex-shrink: 0; }
+
+  .mm-sub-node {
+    padding: 5px 10px;
+    font-size: 12px;
+    color: var(--ink);
+    opacity: 0.7;
+    background: white;
+    border: 1px solid var(--sepia-light);
+    margin-left: 2px;
+  }
+
+  .mm-node-group {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .mm-sub-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .mm-sub-item {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* ── 正文排版 ── */
+  .article-section {
+    margin-bottom: 40px;
+  }
+
+  .article-heading {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--sepia-light);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .article-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 13px;
+    font-family: 'Noto Sans SC', sans-serif;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .article-body {
+    font-size: 15px;
+    line-height: 2;
+    color: #2a1f10;
+    text-indent: 2em;
+  }
+
+  .article-body p { margin-bottom: 16px; }
+
+  .bold-quote {
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 16px;
+    text-indent: 0 !important;
+    text-align: center;
+    margin: 24px 0 !important;
+    padding: 20px 24px;
+    background: var(--sepia-light);
+    border-left: 4px solid var(--accent);
+  }
+
+  .slogan-block {
+    text-align: center;
+    margin: 24px 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #1a1208, #3d2008);
+    color: var(--paper);
+  }
+
+  .slogan-block p {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 18px;
+    font-weight: 700;
+    text-indent: 0 !important;
+    margin-bottom: 8px !important;
+    letter-spacing: 2px;
+  }
+
+  .slogan-block p:last-child { margin-bottom: 0 !important; }
+
+  .tech-list {
+    margin: 0 0 16px 0;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .tech-list li {
+    padding: 10px 16px;
+    border-left: 2px solid var(--sepia-light);
+    margin-bottom: 2px;
+    font-size: 14px;
+    background: white;
+  }
+
+  .tech-list li strong { color: var(--accent); }
+
+  /* ── 一人公司延伸解读 ── */
+  .opc-section {
+    background: var(--ink);
+    color: var(--paper);
+    margin: 0 -24px;
+    padding: 60px 24px;
+  }
+
+  .opc-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 28px;
+    font-weight: 900;
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+  }
+
+  .opc-subtitle {
+    font-size: 14px;
+    opacity: 0.5;
+    margin-bottom: 48px;
+    letter-spacing: 1px;
+  }
+
+  .opc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .opc-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 24px;
+    position: relative;
+    transition: all 0.25s;
+  }
+
+  .opc-card:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.2);
+  }
+
+  .opc-card-num {
+    position: absolute;
+    top: -1px; right: 20px;
+    font-size: 48px;
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 900;
+    color: rgba(255,255,255,0.06);
+    line-height: 1;
+    user-select: none;
+  }
+
+  .opc-card-icon {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .opc-card-from {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .opc-card-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #f7f2e8;
+  }
+
+  .opc-card-orig {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 12px;
+    font-style: italic;
+    line-height: 1.6;
+    padding-left: 10px;
+    border-left: 2px solid rgba(255,255,255,0.15);
+  }
+
+  .opc-card-body {
+    font-size: 13px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.75);
+  }
+
+  .opc-action {
+    background: rgba(192,57,43,0.2);
+    border: 1px solid rgba(192,57,43,0.4);
+    padding: 8px 14px;
+    font-size: 12px;
+    color: #f8a090;
+    margin-top: 12px;
+    display: inline-block;
+    letter-spacing: 0.5px;
+  }
+
+  /* 对比表 */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 14px;
+  }
+
+  .compare-table th {
+    background: rgba(255,255,255,0.1);
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .compare-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.7);
+    vertical-align: top;
+  }
+
+  .compare-table tr:hover td { background: rgba(255,255,255,0.04); }
+
+  .tag-old {
+    background: rgba(192,57,43,0.25);
+    color: #f8a090;
+    padding: 2px 8px;
+    font-size: 11px;
+    margin-right: 6px;
+  }
+
+  .tag-new {
+    background: rgba(45,106,79,0.3);
+    color: #7dd4a8;
+    padding: 2px 8px;
+    font-size: 11px;
+    margin-right: 6px;
+  }
+
+  /* ── 讨论卡片 ── */
+  .discuss-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .discuss-card {
+    padding: 24px;
+    background: white;
+    border: 1px solid var(--sepia-light);
+    position: relative;
+    transition: all 0.2s;
+  }
+
+  .discuss-card:hover {
+    border-color: var(--sepia-mid);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    transform: translateY(-2px);
+  }
+
+  .discuss-q-num {
+    font-size: 40px;
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 900;
+    color: var(--sepia-light);
+    line-height: 1;
+    position: absolute;
+    top: 12px; right: 16px;
+    user-select: none;
+  }
+
+  .discuss-q {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 10px;
+    line-height: 1.6;
+  }
+
+  .discuss-hint {
+    font-size: 13px;
+    color: var(--sepia-dark);
+    line-height: 1.7;
+  }
+
+  /* ── 延伸阅读 ── */
+  .ext-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .ext-item {
+    padding: 16px 20px;
+    background: white;
+    border: 1px solid var(--sepia-light);
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    transition: all 0.2s;
+  }
+
+  .ext-item:hover { border-color: var(--sepia-mid); }
+
+  .ext-year {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--sepia-dark);
+    letter-spacing: 1px;
+    min-width: 36px;
+    padding-top: 2px;
+  }
+
+  .ext-info { flex: 1; }
+
+  .ext-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .ext-desc {
+    font-size: 12px;
+    color: var(--sepia-dark);
+    line-height: 1.6;
+  }
+
+  /* ── 注释 ── */
+  .footnotes {
+    padding: 32px 0;
+    border-top: 1px solid var(--sepia-light);
+    margin-top: 40px;
+  }
+
+  .footnote-title {
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--sepia-dark);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+
+  .footnote-item {
+    font-size: 13px;
+    color: var(--sepia-dark);
+    margin-bottom: 8px;
+    padding-left: 20px;
+    text-indent: -20px;
+    line-height: 1.7;
+  }
+
+  /* ── 印章装饰 ── */
+  .stamp {
+    display: inline-block;
+    border: 3px solid var(--stamp-red);
+    color: var(--stamp-red);
+    padding: 6px 16px;
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 4px;
+    transform: rotate(-8deg);
+    opacity: 0.7;
+    margin-top: 16px;
+  }
+
+  /* ── 页脚 ── */
+  .footer {
+    background: #0e0a05;
+    color: rgba(255,255,255,0.3);
+    text-align: center;
+    padding: 32px 24px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    line-height: 2;
+  }
+
+  /* ── 响应式 ── */
+  @media (max-width: 640px) {
+    .hero { padding: 60px 20px 40px; }
+    .nav { padding: 0 16px; }
+    .nav a { padding: 12px 14px; font-size: 12px; }
+    .opc-section { margin: 0 -16px; padding: 40px 16px; }
+    .container { padding: 0 16px; }
+    .mindmap { min-width: 580px; }
+    .section { padding: 40px 0 28px; }
+  }
+
+  /* ── 滚动动画 ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- 英雄区 -->
+<header class="hero">
+  <div class="hero-tag">共读材料 · 2026年6月</div>
+  <h1 class="hero-title">反对本本主义</h1>
+  <p class="hero-subtitle">毛泽东 · 37岁 · 1930年5月 · 江西寻乌</p>
+  <div class="hero-meta">
+    <span>📖 全文约4500字</span>
+    <span>⏱ 默读约8分钟</span>
+    <span>🗓 收入毛选 1991年版</span>
+    <span>🔥 延安整风理论先声</span>
+    <span>⚔️ 红四军前委书记</span>
+  </div>
+</header>
+
+<!-- 导航 -->
+<nav class="nav">
+  <a href="#overview">速览</a>
+  <a href="#timeline">时间线</a>
+  <a href="#mindmap">思维导图</a>
+  <a href="#article">全文</a>
+  <a href="#opc">一人公司解读</a>
+  <a href="#discuss">讨论题</a>
+  <a href="#reading">延伸阅读</a>
+</nav>
+
+<!-- 主体 -->
+<main class="container">
+
+  <!-- 速览 -->
+  <section class="section fade-in" id="overview">
+    <p class="section-label">Section 01</p>
+    <h2 class="section-title">速览卡片</h2>
+    <div class="info-grid">
+      <div class="info-cell"><div class="info-cell-label">作者年龄</div><div class="info-cell-value" style="color:var(--stamp-red); font-weight:700;">37岁</div></div>
+      <div class="info-cell"><div class="info-cell-label">写作时间</div><div class="info-cell-value">1930年5月</div></div>
+      <div class="info-cell"><div class="info-cell-label">写作地点</div><div class="info-cell-value">江西寻乌县</div></div>
+      <div class="info-cell"><div class="info-cell-label">当时身份</div><div class="info-cell-value">红四军前委书记</div></div>
+      <div class="info-cell"><div class="info-cell-label">原标题</div><div class="info-cell-value">《调查工作》</div></div>
+      <div class="info-cell"><div class="info-cell-label">改名时间</div><div class="info-cell-value">1964年</div></div>
+      <div class="info-cell"><div class="info-cell-label">失而复得</div><div class="info-cell-value">1961年，龙岩农民献出翻印本</div></div>
+      <div class="info-cell"><div class="info-cell-label">毛选地位</div><div class="info-cell-value">1991年版唯一增补文章</div></div>
+    </div>
+
+    <!-- 教员处境卡片 -->
+    <div style="margin: 28px 0; padding: 24px 28px; background: linear-gradient(135deg, #fef3e2, #fdf1ef); border: 1px solid #f0d8a8; border-radius: 2px;">
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+        <span style="font-size:20px;">⚔️</span>
+        <span style="font-family:'Noto Serif SC',serif; font-size:18px; font-weight:700; color:var(--ink);">37岁的毛泽东，处在什么位置？</span>
+      </div>
+      <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:16px; font-size:14px; color:#2a1f10; line-height:1.8;">
+        <div>
+          <div style="font-size:12px; font-weight:600; color:var(--amber); margin-bottom:4px; letter-spacing:1px;">📍 地理位置</div>
+          <p>率领红军游击于闽赣交界山区，与党中央失去联系已两年。没有电台，不知道莫斯科在说什么，也不知道上海党中央的处境。</p>
+        </div>
+        <div>
+          <div style="font-size:12px; font-weight:600; color:var(--red); margin-bottom:4px; letter-spacing:1px;">⚡ 党内处境</div>
+          <p>刚经历被"开除政治局"（1927年11月中央临时政治局扩大会议），1929年红四军"七大"上又被选掉了前委书记。写了这文章后不久，在"九大"上才恢复职务。地位并不稳固。</p>
+        </div>
+        <div>
+          <div style="font-size:12px; font-weight:600; color:var(--green); margin-bottom:4px; letter-spacing:1px;">🎯 军事状况</div>
+          <p>红四军约4000人，装备简陋，被国民党军围追堵截。必须准确判断敌我形势、社会阶级构成、群众基础，才能决定打哪里、怎么打。</p>
+        </div>
+        <div>
+          <div style="font-size:12px; font-weight:600; color:var(--blue); margin-bottom:4px; letter-spacing:1px;">🧠 思想对手</div>
+          <p>面对党内"照搬苏联经验"的教条派（以王明、博古为代表）、共产国际"城市中心论"的遥控指挥，以及红军内部"流寇思想"——调查研究成了他的方法论武器。</p>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex; justify-content:flex-end;"><span class="stamp">字字皆实践</span></div>
+  </section>
+
+  <!-- 十年时间线 -->
+  <section class="section fade-in" id="timeline">
+    <p class="section-label">Section 01-2</p>
+    <h2 class="section-title">教员十年时间线</h2>
+    <p style="font-size:15px; color:var(--sepia-dark); margin-bottom:24px;">从32岁回韶山搞农民运动，到42岁遵义会议确立领导地位——37岁写下这篇文章时，正处于「低谷中的觉醒」阶段。</p>
+
+    <h3 style="font-family:'Noto Serif SC',serif; font-size:18px; margin-bottom:20px; font-weight:700; display:flex; align-items:center; gap:10px;">
+      <span style="display:inline-block; width:32px; height:3px; background:var(--accent);"></span>
+      1925 — 1935
+    </h3>
+    <div class="timeline" style="position:relative; padding-left: 28px; margin-bottom: 32px;">
+      <!-- 时间轴竖线 -->
+      <div style="position:absolute; left:8px; top:8px; bottom:8px; width:2px; background: linear-gradient(to bottom, var(--sepia-light), var(--sepia-mid), var(--stamp-red), var(--sepia-mid), var(--sepia-light));"></div>
+
+      <!-- 1925 -->
+      <div class="tl-item" style="position:relative; margin-bottom:20px; padding-left:16px;">
+        <div style="position:absolute; left:-24px; top:6px; width:12px; height:12px; border-radius:50%; background:var(--paper); border:2px solid var(--sepia-mid);"></div>
+        <div style="font-size:11px; font-weight:700; color:var(--sepia-dark); letter-spacing:2px; margin-bottom:2px;">1925 · 32岁</div>
+        <div style="font-size:14px; font-weight:600; color:var(--ink); margin-bottom:2px;">回到韶山，发动农民运动</div>
+        <div style="font-size:13px; color:var(--sepia-dark); line-height:1.6;">回乡养病期间组织农民协会，建立中共韶山支部。第一次深刻接触中国农村社会的真实结构。同年写《中国社会各阶级的分析》。</div>
+      </div>
+
+      <!-- 1926 -->
+      <div class="tl-item" style="position:relative; margin-bottom:20px; padding-left:16px;">
+        <div style="position:absolute; left:-24px; top:6px; width:12px; height:12px; border-radius:50%; background:var(--paper); border:2px solid var(--sepia-mid);"></div>
+        <div style="font-size:11px; font-weight:700; color:var(--sepia-dark); letter-spacing:2px; margin-bottom:2px;">1926 · 33岁</div>
+        <div style="font-size:14px; font-weight:600; color:var(--ink); margin-bottom:2px;">主持广州农民运动讲习所（第六届）</div>
+        <div style="font-size:13px; color:var(--sepia-dark); line-height:1.6;">任所长，讲授"中国农民问题"，亲自主编教材。把农民调查经验系统化，学员来自20个省区，播下火种。</div>
+      </div>
+
+      <!-- 1927 -->
+      <div class="tl-item" style="position:relative; margin-bottom:20px; padding-left:16px;">
+        <div style="position:absolute; left:-24px; top:6px; width:12px; height:12px; border-radius:50%; background:var(--stamp-red); border:2px solid var(--stamp-red);"></div>
+        <div style="font-size:11px; font-weight:700; color:var(--stamp-red); letter-spacing:2px; margin-bottom:2px;">1927 · 34岁 — 巨变之年</div>
+        <div style="font-size:14px; font-weight:600; color:var(--ink); margin-bottom:2px;">大革命失败 → 秋收起义 → 上井冈山</div>
+        <div style="font-size:13px; color:var(--sepia-dark); line-height:1.6;">
+          <b>3月</b>：发表《湖南农民运动考察报告》——又一次大规模田野调查的产物。<br>
+          <b>9月</b>：领导秋收起义失败，果断放弃攻打长沙，转向农村。<br>
+          <b>10月</b>：率残部上井冈山，开辟第一个农村革命根据地。<br>
+          <b>11月</b>：被中央临时政治局开除政治局候补委员职务（传达有误，误传为"开除党籍"）。
+        </div>
+      </div>
+
+      <!-- 1928 -->
+      <div class="tl-item" style="position:relative; margin-bottom:20px; padding-left:16px;">
+        <div style="position:absolute; left:-24px; top:6px; width:12px; height:12px; border-radius:50%; background:var(--paper); border:2px solid var(--sepia-mid);"></div>
+        <div style="font-size:11px; font-weight:700; color:var(--sepia-dark); letter-spacing:2px; margin-bottom:2px;">1928 · 35岁</div>
+        <div style="font-size:14px; font-weight:600; color:var(--ink); margin-bottom:2px;">朱毛会师 · 红四军成立 · "八月失败"</div>
+        <div style="font-size:13px; color:var(--sepia-dark); line-height:1.6;">
+          <b>4月</b>：与朱德部会师，成立工农革命军第四军（红四军），朱德任军长，毛泽东任党代表。<br>
+          <b>6-8月</b>：湖南省委代表杜修经强令红四军冒进湘南，兵力损失近半——这就是"盲目执行上级指示"的<b style="color:var(--stamp-red);">血的教训</b>，直接催生了《反对本本主义》。
+        </div>
+      </div>
+
+      <!-- 1929 -->
+      <div class="tl-item" style="position:relative; margin-bottom:20px; padding-left:16px;">
+        <div style="position:absolute; left:-24px; top:6px; width:12px; height:12px; border-radius:50%; background:var(--paper); border:2px solid var(--amber);"></div>
+        <div style="font-size:11px; font-weight:700; color:var(--amber); letter-spacing:2px; margin-bottom:2px;">1929 · 36岁 — 低谷之年</div>
+        <div style="font-size:14px; font-weight:600; color:var(--ink); margin-bottom:2px;">红四军"七大"落选 · 离开部队 · 养病</div>
+        <div style="font-size:13px; color:var(--sepia-dark); line-height:1.6;">
+          <b>6月</b>：红四军"七大"，因内部争论被选掉前委书记，离开自己亲手创建的部队。<br>
+          <b>7-9月</b>：到闽西上杭养病，同时深入社会调查。<br>
+          <b>10-12月</b>：被请回，主持"九大"，通过著名的<b>《古田会议决议》</b>——确立了"思想建党、政治建军"的原则。
+        </div>
+      </div>
+
+      <!-- 1930 ★ 高亮 -->
+      <div class="tl-item" style="position:relative; margin-bottom:20px; padding-left:16px; background: linear-gradient(90deg, rgba(181,52,42,0.06), transparent); padding: 16px 16px 16px 16px; margin-left:-16px; border-left: 3px solid var(--stamp-red);">
+        <div style="position:absolute; left:-24px; top:6px; width:16px; height:16px; border-radius:50%; background:var(--stamp-red); border:3px solid var(--paper); box-shadow: 0 0 0 3px rgba(181,52,42,0.3);"></div>
+        <div style="font-size:11px; font-weight:700; color:var(--stamp-red); letter-spacing:2px; margin-bottom:2px;">★ 1930 · 37岁 — 写作本文</div>
+        <div style="font-size:16px; font-weight:700; color:var(--ink); margin-bottom:2px;">寻乌调查 → 写下《反对本本主义》</div>
+        <div style="font-size:13px; color:var(--sepia-dark); line-height:1.6;">
+          <b>5月</b>：在江西寻乌进行20多天深入社会调查（访问100多人），写成《寻乌调查》<b>同时写下本文</b>。<br>
+          <b>6月</b>：发表《星星之火，可以燎原》，提出"农村包围城市"的战略构想。<br>
+          此时红四军从井冈山突围不久，约4000人，游击闽赣边界，前途未卜——但方法论已经成型。
+        </div>
+      </div>
+
+      <!-- 1931 -->
+      <div class="tl-item" style="position:relative; margin-bottom:20px; padding-left:16px;">
+        <div style="position:absolute; left:-24px; top:6px; width:12px; height:12px; border-radius:50%; background:var(--paper); border:2px solid var(--sepia-mid);"></div>
+        <div style="font-size:11px; font-weight:700; color:var(--sepia-dark); letter-spacing:2px; margin-bottom:2px;">1931 · 38岁</div>
+        <div style="font-size:14px; font-weight:600; color:var(--ink); margin-bottom:2px;">中华苏维埃共和国成立</div>
+        <div style="font-size:13px; color:var(--sepia-dark); line-height:1.6;">在瑞金建立中央苏维埃政府，任主席。但党内"左"倾路线抬头，教条派（王明）从莫斯科遥控指挥，与毛泽东的调查研究路线直接冲突。</div>
+      </div>
+
+      <!-- 1932 -->
+      <div class="tl-item" style="position:relative; margin-bottom:20px; padding-left:16px;">
+        <div style="position:absolute; left:-24px; top:6px; width:12px; height:12px; border-radius:50%; background:var(--paper); border:2px solid var(--sepia-mid);"></div>
+        <div style="font-size:11px; font-weight:700; color:var(--sepia-dark); letter-spacing:2px; margin-bottom:2px;">1932 · 39岁</div>
+        <div style="font-size:14px; font-weight:600; color:var(--ink); margin-bottom:2px;">被排挤，撤销前线指挥权</div>
+        <div style="font-size:13px; color:var(--sepia-dark); line-height:1.6;">宁都会议上被撤销红一方面军总政委职务，"靠边站"。教条派全面掌权——但他们拒绝调查研究的做法，将导致灾难。</div>
+      </div>
+
+      <!-- 1933 -->
+      <div class="tl-item" style="position:relative; margin-bottom:20px; padding-left:16px;">
+        <div style="position:absolute; left:-24px; top:6px; width:12px; height:12px; border-radius:50%; background:var(--paper); border:2px solid var(--sepia-mid);"></div>
+        <div style="font-size:11px; font-weight:700; color:var(--sepia-dark); letter-spacing:2px; margin-bottom:2px;">1933 · 40岁</div>
+        <div style="font-size:14px; font-weight:600; color:var(--ink); margin-bottom:2px;">第五次反"围剿"初期，被排斥</div>
+        <div style="font-size:13px; color:var(--sepia-dark); line-height:1.6;">博古、李德（共产国际军事顾问）推行"御敌于国门之外"的教条打法，完全不顾战场实际。毛泽东在后方做查田运动，同时在等待时机。</div>
+      </div>
+
+      <!-- 1934 -->
+      <div class="tl-item" style="position:relative; margin-bottom:20px; padding-left:16px;">
+        <div style="position:absolute; left:-24px; top:6px; width:12px; height:12px; border-radius:50%; background:var(--paper); border:2px solid var(--stamp-red);"></div>
+        <div style="font-size:11px; font-weight:700; color:var(--stamp-red); letter-spacing:2px; margin-bottom:2px;">1934 · 41岁 — 至暗时刻</div>
+        <div style="font-size:14px; font-weight:600; color:var(--ink); margin-bottom:2px;">第五次反"围剿"失败 → 被迫长征</div>
+        <div style="font-size:13px; color:var(--sepia-dark); line-height:1.6;">
+          中央苏区沦陷，红军从8.6万锐减。10月开始长征。出发时毛泽东因病被抬上担架——<b style="color:var(--stamp-red);">他预言的"不调查就行动必败"，以最惨烈的方式应验了</b>。
+        </div>
+      </div>
+
+      <!-- 1935 -->
+      <div class="tl-item" style="position:relative; margin-bottom:20px; padding-left:16px;">
+        <div style="position:absolute; left:-24px; top:6px; width:12px; height:12px; border-radius:50%; background:var(--green); border:2px solid var(--green);"></div>
+        <div style="font-size:11px; font-weight:700; color:var(--green); letter-spacing:2px; margin-bottom:2px;">1935 · 42岁 — 逆转</div>
+        <div style="font-size:14px; font-weight:600; color:var(--ink); margin-bottom:2px;">遵义会议 → 确立领导地位</div>
+        <div style="font-size:13px; color:var(--sepia-dark); line-height:1.6;">
+          <b>1月</b>：遵义会议，批判博古、李德的教条主义军事路线，毛泽东重新进入核心决策层。<br>
+          <b>意义</b>：从1930年写下"没有调查，没有发言权"到1935年遵义会议，整整五年——实践检验了真理，事实替他打赢了这场路线之争。<br>
+          此后四渡赤水、巧渡金沙江，用最"实事求是"的方式带领红军走出绝境。
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; margin:16px 0 0; font-size:12px; color:var(--sepia-dark); opacity:0.7; line-height:1.6;">
+      ⬆️ 37岁写下的方法论，5年后在遵义会议上被历史验证。再过10年（1945年），"实事求是"正式写入中共七大党章。
+    </div>
+  </section>
+
+  <!-- 前因（回到overview的续） -->
+  <section class="section fade-in" style="padding-top:20px;">
+    <h3 style="font-family:'Noto Serif SC',serif; font-size:18px; margin-bottom:16px; font-weight:700;">前因：为什么写这篇文章</h3>
+    <p style="font-size:15px; line-height:1.9; color:#2a1f10; margin-bottom:16px;">1927年大革命失败后，党内存在三种严重倾向：</p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(200px,1fr)); gap:12px; margin-bottom:20px;">
+      <div style="padding:16px 20px; background:#fdf1ef; border-left:3px solid var(--red);">
+        <div style="font-size:11px; letter-spacing:2px; color:var(--red); margin-bottom:6px; text-transform:uppercase; font-weight:600;">唯书</div>
+        <div style="font-size:14px; color:var(--ink);">开口闭口"拿本本来"，把马克思主义当教条</div>
+      </div>
+      <div style="padding:16px 20px; background:#fef8ef; border-left:3px solid var(--amber);">
+        <div style="font-size:11px; letter-spacing:2px; color:var(--amber); margin-bottom:6px; text-transform:uppercase; font-weight:600;">唯上</div>
+        <div style="font-size:14px; color:var(--ink);">对上级指示不加审察，盲目机械执行</div>
+      </div>
+      <div style="padding:16px 20px; background:#eef7f2; border-left:3px solid var(--green);">
+        <div style="font-size:11px; letter-spacing:2px; color:var(--green); margin-bottom:6px; text-transform:uppercase; font-weight:600;">唯我</div>
+        <div style="font-size:14px; color:var(--ink);">不作调查研究，坐在房子里冥思苦索</div>
+      </div>
+    </div>
+    <div style="display:flex; justify-content:flex-end;"><span class="stamp">字字皆实践</span></div>
+  </section>
+
+  <!-- 思维导图 -->
+  <section class="section fade-in" id="mindmap">
+    <p class="section-label">Section 03</p>
+    <h2 class="section-title">思维导图</h2>
+    <div class="mindmap-wrapper">
+      <!-- SVG 思维导图 -->
+      <svg viewBox="0 0 860 420" width="100%" height="420" style="min-width:700px;" xmlns="http://www.w3.org/2000/svg">
+        <!-- 背景 -->
+        <rect width="860" height="420" fill="#ede5d0"/>
+
+        <!-- 中心节点 -->
+        <rect x="330" y="170" width="140" height="80" fill="#1a1208"/>
+        <text x="400" y="205" text-anchor="middle" fill="#f7f2e8" font-family="Noto Serif SC,serif" font-size="15" font-weight="700">反对</text>
+        <text x="400" y="228" text-anchor="middle" fill="#f7f2e8" font-family="Noto Serif SC,serif" font-size="15" font-weight="700">本本主义</text>
+
+        <!-- 左侧：批判 -->
+        <line x1="330" y1="195" x2="240" y2="115" stroke="#c9b99a" stroke-width="1.5"/>
+        <rect x="100" y="90" width="140" height="50" fill="#fdf1ef" stroke="#e8c0bc" stroke-width="1"/>
+        <text x="170" y="111" text-anchor="middle" fill="#c0392b" font-family="Noto Sans SC,sans-serif" font-size="12" font-weight="600">批判三种错误</text>
+        <text x="170" y="130" text-anchor="middle" fill="#c0392b" font-family="Noto Sans SC,sans-serif" font-size="11">唯书 · 唯上 · 唯我</text>
+
+        <line x1="330" y1="210" x2="240" y2="210" stroke="#c9b99a" stroke-width="1.5"/>
+        <rect x="100" y="186" width="140" height="50" fill="#fdf1ef" stroke="#e8c0bc" stroke-width="1"/>
+        <text x="170" y="207" text-anchor="middle" fill="#c0392b" font-family="Noto Sans SC,sans-serif" font-size="12" font-weight="600">后果警告</text>
+        <text x="170" y="226" text-anchor="middle" fill="#c0392b" font-family="Noto Sans SC,sans-serif" font-size="11">机会主义 or 盲动主义</text>
+
+        <line x1="330" y1="225" x2="240" y2="300" stroke="#c9b99a" stroke-width="1.5"/>
+        <rect x="100" y="276" width="140" height="50" fill="#fdf1ef" stroke="#e8c0bc" stroke-width="1"/>
+        <text x="170" y="297" text-anchor="middle" fill="#c0392b" font-family="Noto Sans SC,sans-serif" font-size="12" font-weight="600">本本≠马克思主义</text>
+        <text x="170" y="316" text-anchor="middle" fill="#c0392b" font-family="Noto Sans SC,sans-serif" font-size="11">实践检验才是标准</text>
+
+        <!-- 右上：核心主张 -->
+        <line x1="470" y1="195" x2="560" y2="115" stroke="#c9b99a" stroke-width="1.5"/>
+        <rect x="560" y="90" width="140" height="50" fill="#eaf4ef" stroke="#b8dac9" stroke-width="1"/>
+        <text x="630" y="111" text-anchor="middle" fill="#2d6a4f" font-family="Noto Sans SC,sans-serif" font-size="12" font-weight="600">核心命题</text>
+        <text x="630" y="130" text-anchor="middle" fill="#2d6a4f" font-family="Noto Sans SC,sans-serif" font-size="11">没有调查，没有发言权</text>
+
+        <!-- 右中：方法 -->
+        <line x1="470" y1="210" x2="560" y2="210" stroke="#c9b99a" stroke-width="1.5"/>
+        <rect x="560" y="186" width="140" height="50" fill="#e8f0fa" stroke="#b8cceb" stroke-width="1"/>
+        <text x="630" y="207" text-anchor="middle" fill="#1a4a7a" font-family="Noto Sans SC,sans-serif" font-size="12" font-weight="600">调查技术七条</text>
+        <text x="630" y="226" text-anchor="middle" fill="#1a4a7a" font-family="Noto Sans SC,sans-serif" font-size="11">讨论式 · 多阶层 · 深入</text>
+
+        <!-- 右下：目的 -->
+        <line x1="470" y1="225" x2="560" y2="305" stroke="#c9b99a" stroke-width="1.5"/>
+        <rect x="560" y="280" width="140" height="50" fill="#fef3e2" stroke="#f0d8a8" stroke-width="1"/>
+        <text x="630" y="301" text-anchor="middle" fill="#d4820a" font-family="Noto Sans SC,sans-serif" font-size="12" font-weight="600">目的：阶级估量</text>
+        <text x="630" y="320" text-anchor="middle" fill="#d4820a" font-family="Noto Sans SC,sans-serif" font-size="11">→正确策略→胜利</text>
+
+        <!-- 下方：独立自主 -->
+        <line x1="400" y1="250" x2="400" y2="340" stroke="#c9b99a" stroke-width="1.5"/>
+        <rect x="310" y="340" width="180" height="50" fill="#1a1208"/>
+        <text x="400" y="362" text-anchor="middle" fill="#f7f2e8" font-family="Noto Serif SC,serif" font-size="13" font-weight="700">中国革命靠中国人</text>
+        <text x="400" y="380" text-anchor="middle" fill="rgba(247,242,232,0.5)" font-family="Noto Sans SC,sans-serif" font-size="11">独立自主 · 实事求是</text>
+
+        <!-- 装饰文字 -->
+        <text x="43" y="390" fill="rgba(26,18,8,0.08)" font-family="Noto Serif SC,serif" font-size="64" font-weight="900">调</text>
+        <text x="730" y="50" fill="rgba(26,18,8,0.08)" font-family="Noto Serif SC,serif" font-size="64" font-weight="900">查</text>
+      </svg>
+    </div>
+
+    <p style="font-size:13px; color:var(--sepia-dark); text-align:center; margin-top:-16px; margin-bottom:24px;">文章的三条主线：批判（左）· 主张（右）· 目的（下）</p>
+
+    <!-- 三活的灵魂对应表 -->
+    <h3 style="font-family:'Noto Serif SC',serif; font-size:17px; margin-bottom:16px; font-weight:700; border-left:3px solid var(--accent); padding-left:14px;">毛泽东思想"活的灵魂"对应关系</h3>
+    <table style="width:100%; border-collapse:collapse; font-size:14px;">
+      <thead>
+        <tr style="background:var(--ink); color:var(--paper);">
+          <th style="padding:12px 16px; text-align:left; font-weight:600;">活的灵魂</th>
+          <th style="padding:12px 16px; text-align:left; font-weight:600;">文章中的对应</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--sepia-light);">
+          <td style="padding:12px 16px; font-weight:600; color:var(--accent);">实事求是</td>
+          <td style="padding:12px 16px; color:#2a1f10;">"没有调查，没有发言权""调查就是解决问题"</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--sepia-light); background:rgba(0,0,0,0.02);">
+          <td style="padding:12px 16px; font-weight:600; color:var(--green);">群众路线</td>
+          <td style="padding:12px 16px; color:#2a1f10;">"到群众中作实际调查去""斗争策略要在群众的斗争过程中才能产生"</td>
+        </tr>
+        <tr>
+          <td style="padding:12px 16px; font-weight:600; color:var(--blue);">独立自主</td>
+          <td style="padding:12px 16px; color:#2a1f10;">"中国革命斗争的胜利要靠中国同志了解中国情况"</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 全文 -->
+  <section class="section fade-in" id="article">
+    <p class="section-label">Section 04</p>
+    <h2 class="section-title">全文正文</h2>
+
+    <div class="article-section">
+      <div class="article-heading"><span class="article-num">一</span>没有调查，没有发言权<sup style="font-size:11px;color:var(--sepia-dark);">[1]</sup></div>
+      <div class="article-body">
+        <p>你对于某个问题没有调查，就停止你对于某个问题的发言权。这不太野蛮了吗？一点也不野蛮。你对那个问题的现实情况和历史情况既然没有调查，不知底里，对于那个问题的发言便一定是瞎说一顿。瞎说一顿之不能解决问题是大家明了的，那末，停止你的发言权有什么不公道呢？许多的同志都成天地闭着眼睛在那里瞎说，这是共产党员的耻辱，岂有共产党员而可以闭着眼睛瞎说一顿的吗？</p>
+        <div class="slogan-block">
+          <p>要不得！</p>
+          <p>要不得！</p>
+          <p>注重调查！</p>
+          <p>反对瞎说！</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="article-section">
+      <div class="article-heading"><span class="article-num">二</span>调查就是解决问题</div>
+      <div class="article-body">
+        <p>你对于那个问题不能解决吗？那末，你就去调查那个问题的现状和它的历史吧！你完完全全调查明白了，你对那个问题就有解决的办法了。一切结论产生于调查情况的末尾，而不是在它的先头。只有蠢人，才是他一个人，或者邀集一堆人，不作调查，而只是冥思苦索地"想办法"，"打主意"。须知这是一定不能想出什么好办法，打出什么好主意的。换一句话说，他一定要产生错办法和错主意。</p>
+        <p>许多巡视员，许多游击队的领导者，许多新接任的工作干部，喜欢一到就宣布政见，看到一点表面，一个枝节，就指手画脚地说这也不对，那也错误。这种纯主观地"瞎说一顿"，实在是最可恶没有的。他一定要弄坏事情，一定要失掉群众，一定不能解决问题。</p>
+        <p>许多做领导工作的人，遇到困难问题，只是叹气，不能解决。他恼火，请求调动工作，理由是"才力小，干不下"。这是懦夫讲的话。迈开你的两脚，到你的工作范围的各部分各地方去走走，学个孔夫子的"每事问"<sup style="font-size:11px;color:var(--sepia-dark);">[2]</sup>，任凭什么才力小也能解决问题，因为你未出门时脑子是空的，归来时脑子已经不是空的了，已经载来了解决问题的各种必要材料，问题就是这样子解决了。一定要出门吗？也不一定，可以召集那些明了情况的人来开个调查会，把你所谓困难问题的"来源"找到手，"现状"弄明白，你的这个困难问题也就容易解决了。</p>
+        <div class="bold-quote">调查就像"十月怀胎"，解决问题就像"一朝分娩"。调查就是解决问题。</div>
+      </div>
+    </div>
+
+    <div class="article-section">
+      <div class="article-heading"><span class="article-num">三</span>反对本本主义</div>
+      <div class="article-body">
+        <p>以为上了书的就是对的，文化落后的中国农民至今还存着这种心理。不谓共产党内讨论问题，也还有人开口闭口"拿本本来"。我们说上级领导机关的指示是正确的，决不单是因为它出于"上级领导机关"，而是因为它的内容是适合于斗争中客观和主观情势的，是斗争所需要的。不根据实际情况进行讨论和审察，一味盲目执行，这种单纯建立在"上级"观念上的形式主义的态度是很不对的。为什么党的策略路线总是不能深入群众，就是这种形式主义在那里作怪。</p>
+        <div class="bold-quote">盲目地表面上完全无异议地执行上级的指示，这不是真正在执行上级的指示，这是反对上级指示或者对上级指示怠工的最妙方法。</div>
+        <p>本本主义的社会科学研究法也同样是最危险的，甚至可能走上反革命的道路，中国有许多专门从书本上讨生活的从事社会科学研究的共产党员，不是一批一批地成了反革命吗？就是明显的证据。我们说马克思主义是对的，决不是因为马克思这个人是什么"先哲"，而是因为他的理论，在我们的实践中，在我们的斗争中，证明了是对的。我们的斗争需要马克思主义。我们欢迎这个理论，丝毫不存什么"先哲"一类的形式的甚至神秘的念头在里面。读过马克思主义"本本"的许多人，成了革命叛徒，那些不识字的工人常常能够很好地掌握马克思主义。</p>
+        <div class="bold-quote">马克思主义的"本本"是要学习的，但是必须同我国的实际情况相结合。我们需要"本本"，但是一定要纠正脱离实际情况的本本主义。</div>
+        <p>怎样纠正这种本本主义？只有向实际情况作调查。</p>
+      </div>
+    </div>
+
+    <div class="article-section">
+      <div class="article-heading"><span class="article-num">四</span>离开实际调查就要产生唯心的阶级估量和唯心的工作指导，那末，它的结果，不是机会主义，便是盲动主义</div>
+      <div class="article-body">
+        <p>你不相信这个结论吗？事实要强迫你信。你试试离开实际调查去估量政治形势，去指导斗争工作，是不是空洞的唯心的呢？这种空洞的唯心的政治估量和工作指导，是不是要产生机会主义错误，或者盲动主义错误呢？一定要弄出错误。这并不是他在行动之前不留心计划，而是他于计划之前不留心了解社会实际情况，这是红军游击队里时常遇见的。那些李逵<sup style="font-size:11px;color:var(--sepia-dark);">[3]</sup>式的官长，看见弟兄们犯事，就懵懵懂懂地乱处置一顿。结果，犯事人不服，闹出许多纠纷，领导者的威信也丧失干净，这不是红军里常见的吗？</p>
+        <p>必须洗刷唯心精神，防止一切机会主义盲动主义错误出现，才能完成争取群众战胜敌人的任务。必须努力作实际调查，才能洗刷唯心精神。</p>
+      </div>
+    </div>
+
+    <div class="article-section">
+      <div class="article-heading"><span class="article-num">五</span>社会经济调查，是为了得到正确的阶级估量，接着定出正确的斗争策略</div>
+      <div class="article-body">
+        <p>为什么要作社会经济调查？我们就是这样回答。因此，作为我们社会经济调查的对象的是社会的各阶级，而不是各种片断的社会现象。近来红军第四军的同志们一般的都注意调查工作了<sup style="font-size:11px;color:var(--sepia-dark);">[4]</sup>，但是很多人的调查方法是错误的。调查的结果就像挂了一篇狗肉账，像乡下人上街听了许多新奇故事，又像站在高山顶上观察人民城郭。这种调查用处不大，不能达到我们的主要目的。我们的主要目的，是要明了社会各阶级的政治经济情况。我们调查所要得到的结论，是各阶级现在的以及历史的盛衰荣辱的情况。举例来说，我们调查农民成分时，不但要知道自耕农<sup style="font-size:11px;color:var(--sepia-dark);">[5]</sup>，半自耕农<sup style="font-size:11px;color:var(--sepia-dark);">[6]</sup>，佃农，这些以租佃关系区别的各种农民的数目有多少，我们尤其要知道富农，中农，贫农，这些以阶级区别阶层区别的各种农民的数目有多少。我们调查商人成分，不但要知道粮食业、衣服业、药材业等行业的人数各有多少，尤其要调查小商人、中等商人、大商人各有多少。我们不仅要调查各业的情况，尤其要调查各业内部的阶级情况。我们不仅要调查各业之间的相互关系，尤其要调查各阶级之间的相互关系。我们调查工作的主要方法是解剖各种社会阶级，我们的终极目的是要明了各种阶级的相互关系，得到正确的阶级估量，然后定出我们正确的斗争策略，确定哪些阶级是革命斗争的主力，哪些阶级是我们应当争取的同盟者，哪些阶级是要打倒的。我们的目的完全在这里。</p>
+        <p>什么是调查时要注意的社会阶级？下面那些就是：</p>
+        <ul class="tech-list">
+          <li>工业无产阶级</li>
+          <li>手工业工人</li>
+          <li>雇农</li>
+          <li>贫农</li>
+          <li>城市贫民</li>
+          <li>游民</li>
+          <li>手工业者</li>
+          <li>小商人</li>
+          <li>中农</li>
+          <li>富农</li>
+          <li>地主阶级</li>
+          <li>商业资产阶级</li>
+          <li>工业资产阶级</li>
+        </ul>
+        <p>这些阶级（有的是阶层）的状况，都是我们调查时要注意的。在我们暂时的工作区域中所没有的，只是工业无产阶级和工业资产阶级，其余都是经常碰见的。我们的斗争策略就是对这许多阶级阶层的策略。</p>
+        <p>我们从前的调查还有一个极大的缺点，就是偏于农村而不注意城市，以致许多同志对城市贫民和商业资产阶级这二者的策略始终模糊。斗争的发展使我们离开山头跑向平地了<sup style="font-size:11px;color:var(--sepia-dark);">[7]</sup>，我们的身子早已下山了，但是我们的思想依然还在山上。我们要了解农村，也要了解城市，否则将不能适应革命斗争的需要。</p>
+      </div>
+    </div>
+
+    <div class="article-section">
+      <div class="article-heading"><span class="article-num">六</span>中国革命斗争的胜利要靠中国同志了解中国情况</div>
+      <div class="article-body">
+        <p>我们的斗争目的是要从民权主义转变到社会主义。我们的任务第一步是，争取工人阶级的大多数，发动农民群众和城市贫民，打倒地主阶级，打倒帝国主义，打倒国民党政权，完成民权主义革命。由这种斗争的发展，跟着就要执行社会主义革命的任务。这些伟大的革命任务的完成不是简单容易的，它全靠无产阶级政党的斗争策略的正确和坚决。倘若无产阶级政党的斗争策略是错误的，或者是动摇犹豫的，那末，革命就非走向暂时的失败不可。须知资产阶级政党也是天天在那里讨论斗争策略的，他们的问题是怎样在工人阶级中传播改良主义影响，使工人阶级受他们的欺骗，而脱离共产党的领导，怎样争取富农去消灭贫农的暴动，怎样组织流氓去镇压革命等等。在这样日益走向尖锐的短兵相接的阶级斗争的形势之下，无产阶级要取得胜利，就完全要靠他的政党——共产党的斗争策略的正确和坚决。共产党的正确而不动摇的斗争策略，决不是少数人坐在房子里能够产生的，它是要在群众的斗争过程中才能产生的，这就是说要在实际经验中才能产生。因此，我们需要时时了解社会情况，时时进行实际调查。那些具有一成不变的保守的形式的空洞乐观的头脑的同志们，以为现在的斗争策略已经是再好没有了，党的第六次全国代表大会的"本本"<sup style="font-size:11px;color:var(--sepia-dark);">[8]</sup>保障了永久的胜利，只要遵守既定办法就无往而不胜利。这些想法是完全错误的，完全不是共产党人从斗争中创造新局面的思想路线，完全是一种保守路线。这种保守路线如不根本丢掉，将会给革命造成很大损失，也会害了这些同志自己。红军中显然有一部分同志是安于现状，不求甚解，空洞乐观，提倡所谓"无产阶级就是这样"的错误思想，饱食终日，坐在机关里面打瞌睡，从不肯伸只脚到社会群众中去调查调查。对人讲话一向是那几句老生常谈，使人厌听。我们要大声疾呼，唤醒这些同志：</p>
+        <div class="slogan-block">
+          <p>速速改变保守思想！</p>
+          <p>换取共产党人的进步的斗争思想！</p>
+          <p>到斗争中去！</p>
+          <p>到群众中作实际调查去！</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="article-section">
+      <div class="article-heading"><span class="article-num">七</span>调查的技术</div>
+      <div class="article-body">
+        <p><strong>（1）要开调查会作讨论式的调查</strong></p>
+        <p>只有这样才能近于正确，才能抽出结论。那种不开调查会，不作讨论式的调查，只凭一个人讲他的经验的方法，是容易犯错误的。那种只随便问一下子，不提出中心问题在会议席上经过辩论的方法，是不能抽出近于正确的结论的。</p>
+        <p><strong>（2）调查会到些什么人？</strong></p>
+        <p>要是能深切明了社会经济情况的人。以年龄说，老年人最好，因为他们有丰富的经验，不但懂得现状，而且明白因果。有斗争经验的青年人也要，因为他们有进步的思想，有锐利的观察。以职业说，工人也要，农民也要，商人也要，知识分子也要，有时兵士也要，流氓也要。自然，调查某个问题时，和那个问题无关的人不必在座，如调查商业时，工农学各业不必在座。</p>
+        <p><strong>（3）开调查会人多好还是人少好？</strong></p>
+        <p>看调查人的指挥能力。那种善于指挥的，可以多到十几个人或者二十几个人。人多有人多的好处，就是在做统计时（如征询贫农占农民总数的百分之几），在做结论时（如征询土地分配平均分好还是差别分好），能得到比较正确的回答。自然人多也有人多的坏处，指挥能力欠缺的人会无法使会场得到安静。究竟人多人少，要依调查人的情况决定。但是至少需要三人，不然会囿于见闻，不符合真实情况。</p>
+        <p><strong>（4）要定调查纲目</strong></p>
+        <p>纲目要事先准备，调查人按照纲目发问，会众口说。不明了的，有疑义的，提起辩论。所谓"调查纲目"，要有大纲，还要有细目，如"商业"是个大纲，"布匹"，"粮食"，"杂货"，"药材"都是细目，布匹下再分"洋布"，"土布"，"绸缎"各项细目。</p>
+        <p><strong>（5）要亲身出马</strong></p>
+        <p>凡担负指导工作的人，从乡政府主席到全国中央政府主席，从大队长到总司令，从支部书记到总书记，一定都要亲身从事社会经济的实际调查，不能单靠书面报告，因为二者是两回事。</p>
+        <p><strong>（6）要深入</strong></p>
+        <p>初次从事调查工作的人，要作一两回深入的调查工作，就是要了解一处地方（例如一个农村、一个城市），或者一个问题（例如粮食问题、货币问题）的底里。深切地了解一处地方或者一个问题了，往后调查别处地方、别个问题，便容易找到门路了。</p>
+        <p><strong>（7）要自己做记录</strong></p>
+        <p>调查不但要自己当主席，适当地指挥调查会的到会人，而且要自己做记录，把调查的结果记下来。假手于人是不行的。</p>
+      </div>
+    </div>
+
+    <!-- 注释 -->
+    <div class="footnotes">
+      <p class="footnote-title">注释</p>
+      <p class="footnote-item">[1] 一九三一年四月二日毛泽东在《总政治部关于调查人口和土地状况的通知》中，对"没有调查，没有发言权"的论断作了补充和发展，提出"我们的口号是：一，不做调查没有发言权。二，不做正确的调查同样没有发言权。"</p>
+      <p class="footnote-item">[2] 见《论语·八佾》。原文是："子入太庙，每事问。"</p>
+      <p class="footnote-item">[3] 李逵是《水浒传》中的一个英雄人物。他朴直豪爽，对农民革命事业很忠诚，但是处事鲁莽。</p>
+      <p class="footnote-item">[4] 毛泽东历来重视调查工作，把进行社会调查作为领导工作的首要任务和决定政策的基础。在毛泽东的倡导下，红军第四军的调查工作逐渐地开展起来。毛泽东还把进行社会调查规定为工作制度，红军政治部制订了详细的调查表，包括群众斗争状况、反动派状况、经济生活情况和农村各阶级占有土地的情况等项目。红军每到一个地方，都首先要弄清当地的阶级关系状况，然后再提出切合群众需要的口号。</p>
+      <p class="footnote-item">[5] 这里是指中农。</p>
+      <p class="footnote-item">[6] 见本卷《中国社会各阶级的分析》注〔10〕。</p>
+      <p class="footnote-item">[7] 这里所说的山头指江西、湖南边界的井冈山地区，平地指江西南部、福建西部地区。一九二九年一月，毛泽东、朱德率领红军第四军的主力，自井冈山出发，向江西南部、福建西部进军，开辟赣南、闽西两大革命根据地。</p>
+      <p class="footnote-item">[8] 指一九二八年六月至七月召开的中国共产党第六次全国代表大会通过的各项决议案。一九二九年初，红军第四军前敌委员会曾经把这些决议案汇集印成单行本，发给红军和地方的党组织。</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- 一人公司延伸解读 -->
+<section class="opc-section fade-in" id="opc">
+  <div class="container">
+    <p class="section-label" style="color:rgba(255,255,255,0.4);">Section 04 · 延伸解读</p>
+    <h2 class="opc-title">一人公司行动指南</h2>
+    <p class="opc-subtitle">把1930年的方法论，翻译成2026年一人创业者的工作语言</p>
+
+    <div class="opc-grid">
+
+      <div class="opc-card">
+        <div class="opc-card-num">01</div>
+        <div class="opc-card-icon">🚫</div>
+        <div class="opc-card-from">原文对应</div>
+        <div class="opc-card-title">拒绝"大厂本本主义"</div>
+        <div class="opc-card-orig">"以为上了书的就是对的……开口闭口'拿本本来'"</div>
+        <div class="opc-card-body">「大厂方法论」「增长飞轮」「PMF框架」都是别人的调查结论，不是你的。照搬只会产生"形式主义执行"。你的用户、你的市场、你的产品，需要你自己做调查。</div>
+        <span class="opc-action">行动：别先问框架，先问用户</span>
+      </div>
+
+      <div class="opc-card">
+        <div class="opc-card-num">02</div>
+        <div class="opc-card-icon">🎙️</div>
+        <div class="opc-card-from">原文对应</div>
+        <div class="opc-card-title">没有用户访谈，没有产品发言权</div>
+        <div class="opc-card-orig">"你对于某个问题没有调查，就停止你对于某个问题的发言权"</div>
+        <div class="opc-card-body">你还没访谈过10个目标用户，就别急着定价，别急着写销售文案，别急着做功能规划。"我感觉用户需要这个"不算调查，那叫冥思苦索。</div>
+        <span class="opc-action">行动：每周至少1次深度用户对话</span>
+      </div>
+
+      <div class="opc-card">
+        <div class="opc-card-num">03</div>
+        <div class="opc-card-icon">🔍</div>
+        <div class="opc-card-from">原文对应</div>
+        <div class="opc-card-title">调查就是产品设计</div>
+        <div class="opc-card-orig">"调查就像'十月怀胎'，解决问题就像'一朝分娩'"</div>
+        <div class="opc-card-body">你卡在产品设计上？不是你创意不够，是你调查不足。把"头脑风暴会"换成"用户访谈纲要"，把"我们讨论一下功能"换成"我去问问用户在哪里卡住"。</div>
+        <span class="opc-action">行动：困惑=调查触发器，而非开会触发器</span>
+      </div>
+
+      <div class="opc-card">
+        <div class="opc-card-num">04</div>
+        <div class="opc-card-icon">📊</div>
+        <div class="opc-card-from">原文对应</div>
+        <div class="opc-card-title">分层调查你的"客户阶级"</div>
+        <div class="opc-card-orig">"我们调查工作的主要方法是解剖各种社会阶级"</div>
+        <div class="opc-card-body">不要只研究"用户"，要分层：<br>潜在客户、试用但未付费者、付费但低频者、高频复购者、主动推荐者——每一层都是不同的「阶级」，需要不同的策略。</div>
+        <span class="opc-action">行动：绘制客户分层地图，按层制定策略</span>
+      </div>
+
+      <div class="opc-card">
+        <div class="opc-card-num">05</div>
+        <div class="opc-card-icon">🧠</div>
+        <div class="opc-card-from">原文对应</div>
+        <div class="opc-card-title">AI是工具，不是"本本"</div>
+        <div class="opc-card-orig">"马克思主义的'本本'是要学习的，但必须同我国的实际情况相结合"</div>
+        <div class="opc-card-body">GPT说的、Claude说的、大V说的——都是"本本"。AI能帮你快速生成框架和假设，但它不了解你的用户、你的城市、你的社群。用AI做假设，用调查做验证。</div>
+        <span class="opc-action">行动：AI输出→标注"待验证假设"→用调查检验</span>
+      </div>
+
+      <div class="opc-card">
+        <div class="opc-card-num">06</div>
+        <div class="opc-card-icon">🚶</div>
+        <div class="opc-card-from">原文对应</div>
+        <div class="opc-card-title">创始人要亲身"出马"</div>
+        <div class="opc-card-orig">"凡担负指导工作的人……一定都要亲身从事社会经济的实际调查，不能单靠书面报告"</div>
+        <div class="opc-card-body">一人公司的优势就是创始人即调查员。别把用户调查外包给问卷星，别把市场洞察托付给数据分析工具。你直接对话的每一个用户，都是别人买不到的情报。</div>
+        <span class="opc-action">行动：每次卖出产品，亲自问一句"为什么买"</span>
+      </div>
+
+      <div class="opc-card">
+        <div class="opc-card-num">07</div>
+        <div class="opc-card-icon">💬</div>
+        <div class="opc-card-from">原文对应</div>
+        <div class="opc-card-title">开讨论式"调查会"代替内容发布会</div>
+        <div class="opc-card-orig">"要开调查会作讨论式的调查……把你所谓困难问题的'来源'找到手"</div>
+        <div class="opc-card-body">IP运营的共创会、闭门会、快闪社群——本质上都是调查会。不要只把它做成"我讲你听"的表演，要设计成"你说我记"的调查。每次活动都是一次市场情报收集。</div>
+        <span class="opc-action">行动：每场共创会预设3个调查问题</span>
+      </div>
+
+      <div class="opc-card">
+        <div class="opc-card-num">08</div>
+        <div class="opc-card-icon">📝</div>
+        <div class="opc-card-from">原文对应</div>
+        <div class="opc-card-title">自己做记录，不假手于人</div>
+        <div class="opc-card-orig">"调查不但要自己当主席……而且要自己做记录……假手于人是不行的"</div>
+        <div class="opc-card-body">用户说的某句话、某个抱怨、某个出乎意料的用法——只有你自己记录才会真正进入你的大脑，产生真正的洞察。让AI帮你整理，但原始接触必须是你。</div>
+        <span class="opc-action">行动：建立个人"用户语录库"，按原话记录</span>
+      </div>
+
+    </div>
+
+    <!-- 新旧对比表 -->
+    <h3 style="font-size:18px; font-weight:700; margin-bottom:20px; font-family:'Noto Serif SC',serif;">本本主义 vs 实事求是：一人公司对照表</h3>
+    <div style="overflow-x:auto;">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>场景</th>
+            <th><span class="tag-old">本本主义做法</span></th>
+            <th><span class="tag-new">实事求是做法</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>产品定价</td>
+            <td>看竞品定价，参考"行业惯例"</td>
+            <td>访谈10个目标客户，测试支付意愿</td>
+          </tr>
+          <tr>
+            <td>内容选题</td>
+            <td>看爆款复刻，按平台算法做内容</td>
+            <td>记录用户反复问的问题，从真实困惑选题</td>
+          </tr>
+          <tr>
+            <td>产品功能</td>
+            <td>"我觉得用户需要这个功能"</td>
+            <td>观察用户实际行为，看他们在哪里卡住</td>
+          </tr>
+          <tr>
+            <td>遇到瓶颈</td>
+            <td>找大V咨询、买课、听方法论</td>
+            <td>直接问：最近3个成交用户为什么买了？最近3个流失用户为什么没买？</td>
+          </tr>
+          <tr>
+            <td>IP定位</td>
+            <td>套用"IP定位公式"，输入赛道+人群+标签</td>
+            <td>梳理自己真正帮助过的人，找共同模式</td>
+          </tr>
+          <tr>
+            <td>增长策略</td>
+            <td>复制"用户裂变""私域运营"标准打法</td>
+            <td>搞清楚自己的用户从哪里来，为什么来</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 核心洞察 -->
+    <div style="margin-top:40px; padding:32px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1);">
+      <div style="font-size:11px; letter-spacing:3px; color:rgba(255,255,255,0.3); margin-bottom:12px; text-transform:uppercase;">核心洞察</div>
+      <p style="font-family:'Noto Serif SC',serif; font-size:20px; font-weight:700; line-height:1.7; color:#f7f2e8; margin-bottom:16px;">一人公司的核心竞争力，就是你能做大公司做不了的那种调查——深入、亲身、持续。</p>
+      <p style="font-size:14px; color:rgba(255,255,255,0.55); line-height:1.9;">大公司有分析师、有问卷、有数据仪表盘，但没有"创始人在群里跟你聊了三小时"。这种不可复制的直接连接，是你的护城河。毛泽东说的"亲身出马"，放在今天就是：你自己打电话，你自己加微信，你自己坐在用户旁边看他们怎么用你的产品。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 讨论题 -->
+<main class="container">
+  <section class="section fade-in" id="discuss">
+    <p class="section-label">Section 05</p>
+    <h2 class="section-title">共读讨论题</h2>
+    <div class="discuss-grid">
+      <div class="discuss-card">
+        <div class="discuss-q-num">Q1</div>
+        <div class="discuss-q">"本本主义"在今天长什么样？</div>
+        <div class="discuss-hint">迷信大厂经验？盲从"最佳实践"？GPT说什么就是什么？你最近一次"拿本本来"是什么时候？</div>
+      </div>
+      <div class="discuss-card">
+        <div class="discuss-q-num">Q2</div>
+        <div class="discuss-q">"调查技术"七条，哪条最难做到？</div>
+        <div class="discuss-hint">1930年的方法，哪些今天依然成立？"亲身出马"在一人公司里是什么意思？</div>
+      </div>
+      <div class="discuss-card">
+        <div class="discuss-q-num">Q3</div>
+        <div class="discuss-q">"盲目执行是对指示怠工的最妙方法"——你敢在会上念这句话吗？</div>
+        <div class="discuss-hint">组织中的"唯上"怎么破？一人公司里有没有自己对自己"唯上"的时候？</div>
+      </div>
+      <div class="discuss-card">
+        <div class="discuss-q-num">Q4</div>
+        <div class="discuss-q">"身子早已下山了，思想依然还在山上"</div>
+        <div class="discuss-hint">环境变了，脑子还没跟上——你在哪个领域有这种体感？你的哪个认知还停留在"旧山头"？</div>
+      </div>
+      <div class="discuss-card">
+        <div class="discuss-q-num">Q5</div>
+        <div class="discuss-q">这篇文章丢了30年——好思想会丢失吗？</div>
+        <div class="discuss-hint">你见过哪些被埋没后又"出土"的好东西？你自己有没有"写下来却从没用过"的洞察？</div>
+      </div>
+      <div class="discuss-card">
+        <div class="discuss-q-num">Q6</div>
+        <div class="discuss-q">一人公司场景：你上一次真正做"调查"是什么时候？</div>
+        <div class="discuss-hint">不是刷信息流，不是看竞品，而是直接问了一个真实用户一个真实问题。结果是什么？</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 延伸阅读 -->
+  <section class="section fade-in" id="reading">
+    <p class="section-label">Section 06</p>
+    <h2 class="section-title">延伸阅读</h2>
+    <div class="ext-list">
+      <div class="ext-item">
+        <div class="ext-year">1930</div>
+        <div class="ext-info">
+          <div class="ext-title">《寻乌调查》</div>
+          <div class="ext-desc">与本文同期写作，约8万字，是"调查技术"的完整示范，可视为本文的实践注脚</div>
+        </div>
+      </div>
+      <div class="ext-item">
+        <div class="ext-year">1937</div>
+        <div class="ext-info">
+          <div class="ext-title">《实践论》</div>
+          <div class="ext-desc">从哲学高度深化了"调查—实践—认识"的关系，本文的理论升华版</div>
+        </div>
+      </div>
+      <div class="ext-item">
+        <div class="ext-year">1941</div>
+        <div class="ext-info">
+          <div class="ext-title">《改造我们的学习》</div>
+          <div class="ext-desc">延安整风三大文献之一，本文思想的延续与制度化升级</div>
+        </div>
+      </div>
+      <div class="ext-item">
+        <div class="ext-year">现代</div>
+        <div class="ext-info">
+          <div class="ext-title">《The Mom Test》Rob Fitzpatrick</div>
+          <div class="ext-desc">用户访谈的现代方法论，和"调查技术七条"有高度呼应，一人创业者必读</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- 页脚 -->
+<footer class="footer">
+  <p>《反对本本主义》· 毛泽东 · 1930年5月 · 江西寻乌</p>
+  <p>全文来源：Marxists.org 中文马克思主义文库 / 《毛泽东选集》第一卷</p>
+  <p style="margin-top:8px; opacity:0.4;">共读材料整理 · 2026年6月 · 一人公司共创行动</p>
+</footer>
+
+<script>
+  // 滚动淡入
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // 导航高亮
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav a');
+
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.style.color = '';
+          link.style.borderBottomColor = '';
+        });
+        const activeLink = document.querySelector(`.nav a[href="#${entry.target.id}"]`);
+        if (activeLink) {
+          activeLink.style.color = 'var(--accent)';
+          activeLink.style.borderBottomColor = 'var(--accent)';
+        }
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sections.forEach(s => navObserver.observe(s));
+</script>
+</body>
+</html>

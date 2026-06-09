@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>毛选方法论共读系列</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #2c1810;
+  --ink-light: #5a3d2b;
+  --paper: #f5f0e8;
+  --paper-dark: #e8dfd0;
+  --sepia: #8b6914;
+  --sepia-light: #c4952a;
+  --stamp-red: #c23a2b;
+  --green: #2d5016;
+  --green-bg: #e8f0e0;
+  --blue: #1a4a6e;
+  --blue-bg: #e0ecf5;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans SC', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.8;
+  min-height: 100vh;
+}
+
+.hero {
+  text-align: center;
+  padding: 80px 20px 60px;
+  background: linear-gradient(180deg, #2c1810 0%, #3d2518 60%, var(--paper) 100%);
+  color: var(--paper);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.5;
+}
+
+.hero h1 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 2.8rem;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.hero .subtitle {
+  font-size: 1.1rem;
+  font-weight: 300;
+  opacity: 0.85;
+  letter-spacing: 0.08em;
+  position: relative;
+}
+
+.hero .badge {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 6px 20px;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  position: relative;
+}
+
+.container {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.intro {
+  padding: 60px 0 40px;
+  text-align: center;
+}
+
+.intro p {
+  font-size: 1.05rem;
+  color: var(--ink-light);
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 2;
+}
+
+.series-progress {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 40px 0;
+  flex-wrap: wrap;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--ink-light);
+}
+
+.step .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.step .dot.done { background: var(--green); }
+.step .dot.current { background: var(--sepia); box-shadow: 0 0 0 3px rgba(196,149,42,0.3); }
+.step .dot.pending { background: #ccc; }
+
+.step .arrow { color: #ccc; font-size: 0.75rem; }
+
+.section-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  padding: 40px 0 8px;
+  color: var(--ink);
+}
+
+.section-desc {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--ink-light);
+  margin-bottom: 32px;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 60px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(44,24,16,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(44,24,16,0.15);
+}
+
+.card-header {
+  padding: 28px 32px 20px;
+  position: relative;
+}
+
+.card-number {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 3rem;
+  font-weight: 900;
+  opacity: 0.08;
+  line-height: 1;
+}
+
+.card-header h2 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.card-meta {
+  display: flex;
+  gap: 16px;
+  font-size: 0.82rem;
+  color: var(--ink-light);
+  flex-wrap: wrap;
+}
+
+.card-meta span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.card-body {
+  padding: 0 32px 28px;
+}
+
+.card-desc {
+  font-size: 0.92rem;
+  color: var(--ink-light);
+  line-height: 1.9;
+  margin-bottom: 16px;
+}
+
+.card-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-size: 0.75rem;
+  padding: 3px 12px;
+  border-radius: 999px;
+  font-weight: 500;
+}
+
+.tag-green { background: var(--green-bg); color: var(--green); }
+.tag-blue { background: var(--blue-bg); color: var(--blue); }
+.tag-red { background: #fce4e1; color: var(--stamp-red); }
+.tag-sepia { background: #faf3e0; color: var(--sepia); }
+
+.card-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 4px 14px;
+  border-radius: 999px;
+  margin-left: 8px;
+}
+
+.status-done { background: var(--green-bg); color: var(--green); }
+.status-next { background: #fff8e1; color: #b8860b; }
+.status-later { background: #f0f0f0; color: #888; }
+
+.card.done .card-header { border-left: 4px solid var(--green); }
+.card.next .card-header { border-left: 4px solid var(--sepia); }
+.card.later .card-header { border-left: 4px solid #ccc; }
+
+.opc-section {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 60px 0;
+  margin: 0 -20px;
+}
+
+.opc-section .section-title { color: var(--paper); }
+.opc-section .section-desc { color: rgba(245,240,232,0.6); }
+
+.opc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.opc-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 24px;
+  transition: background 0.3s;
+}
+
+.opc-card:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.opc-card h3 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: var(--sepia-light);
+}
+
+.opc-card p {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  line-height: 1.7;
+}
+
+.tools-section {
+  padding: 60px 0 80px;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.tool-item {
+  text-align: center;
+  padding: 24px 16px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(44,24,16,0.06);
+}
+
+.tool-icon {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.tool-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.tool-desc {
+  font-size: 0.78rem;
+  color: var(--ink-light);
+}
+
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 0.8rem;
+  color: var(--ink-light);
+  opacity: 0.6;
+  border-top: 1px solid var(--paper-dark);
+}
+
+@media (max-width: 600px) {
+  .hero h1 { font-size: 2rem; }
+  .card-header, .card-body { padding-left: 20px; padding-right: 20px; }
+  .card-number { font-size: 2rem; }
+  .opc-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>毛选方法论共读系列</h1>
+  <p class="subtitle">用 AI 重新读毛选 · 拆解给一人公司的行动指南</p>
+  <span class="badge">人 + AI 共创 · 2026</span>
+</div>
+
+<div class="container">
+
+  <div class="intro">
+    <p>把 1930-1941 年间教员最核心的方法论文本，重新拆解成现代创业者的可操作工具。不是读书会，是共创会——带着真实问题来，带着行动方案走。</p>
+  </div>
+
+  <div class="series-progress">
+    <div class="step"><span class="dot done"></span>反对本本主义</div>
+    <span class="arrow">→</span>
+    <div class="step"><span class="dot current"></span>实践论</div>
+    <span class="arrow">→</span>
+    <div class="step"><span class="dot pending"></span>改造我们的学习</div>
+    <span class="arrow">→</span>
+    <div class="step"><span class="dot pending"></span>矛盾论</div>
+  </div>
+
+  <h2 class="section-title">共读课表</h2>
+  <p class="section-desc">从入门到硬核，难度递进，逻辑连贯</p>
+
+  <div class="cards">
+
+    <a href="反对本本主义_共读页面.html" class="card done">
+      <div class="card-header">
+        <span class="card-number">01</span>
+        <h2>反对本本主义 <span class="card-status status-done">已完成</span></h2>
+        <div class="card-meta">
+          <span>1930年5月</span>
+          <span>36岁</span>
+          <span>寻乌调查后</span>
+          <span>5000字 · 15分钟</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-desc">没有调查，没有发言权。教员在最低谷时写出的战斗檄文——反对一切脱离实际的教条，强调从实地调查中找答案。</p>
+        <div class="card-tags">
+          <span class="tag tag-green">入门级</span>
+          <span class="tag tag-red">有战斗感</span>
+          <span class="tag tag-sepia">调查方法论</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="实践论_共读页面.html" class="card next">
+      <div class="card-header">
+        <span class="card-number">02</span>
+        <h2>实践论 <span class="card-status status-next">第2期</span></h2>
+        <div class="card-meta">
+          <span>1937年7月</span>
+          <span>43岁</span>
+          <span>延安抗大讲稿</span>
+          <span>5000字 · 15分钟</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-desc">调查→实践→认识→再实践→再认识。跟第1期无缝衔接：反对本本主义教"怎么调查"，实践论教"调查完了怎么变成认知"。</p>
+        <div class="card-tags">
+          <span class="tag tag-blue">进阶级</span>
+          <span class="tag tag-sepia">认识论</span>
+          <span class="tag tag-green">顺着走</span>
+        </div>
+      </div>
+    </a>
+
+    <div class="card later" style="cursor:default;">
+      <div class="card-header">
+        <span class="card-number">03</span>
+        <h2>改造我们的学习 <span class="card-status status-later">待制作</span></h2>
+        <div class="card-meta">
+          <span>1941年5月</span>
+          <span>47岁</span>
+          <span>延安整风开篇</span>
+          <span>4000字 · 12分钟</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-desc">墙上芦苇，头重脚轻根底浅；山间竹笋，嘴尖皮厚腹中空。教员用最生动的比喻批判教条主义学风，提倡实事求是。</p>
+        <div class="card-tags">
+          <span class="tag tag-blue">落地级</span>
+          <span class="tag tag-red">有组织感</span>
+          <span class="tag tag-sepia">学风建设</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card later" style="cursor:default;">
+      <div class="card-header">
+        <span class="card-number">04</span>
+        <h2>矛盾论 <span class="card-status status-later">待制作</span></h2>
+        <div class="card-meta">
+          <span>1937年8月</span>
+          <span>43岁</span>
+          <span>实践论姊妹篇</span>
+          <span>10000+字 · 35分钟</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-desc">对立统一规律是宇宙的根本规律。前三期建立语感后，挑战这篇纯哲学论文——适合反复啃，共读抓核心论点。</p>
+        <div class="card-tags">
+          <span class="tag tag-red">硬核级</span>
+          <span class="tag tag-blue">纯哲学</span>
+          <span class="tag tag-sepia">辩证法</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="opc-section">
+  <div class="container">
+    <h2 class="section-title">一人公司行动映射</h2>
+    <p class="section-desc">每篇方法论，都对应创业者的真实困境</p>
+    <div class="opc-grid">
+      <div class="opc-card">
+        <h3>不抄作业</h3>
+        <p>别拿别人的模板当圣经，做自己的市场调研</p>
+      </div>
+      <div class="opc-card">
+        <h3>先干起来</h3>
+        <p>不要等想清楚了再干，干的过程中才能想清楚</p>
+      </div>
+      <div class="opc-card">
+        <h3>建立系统</h3>
+        <p>从碎片化学习升级为自己的认知操作系统</p>
+      </div>
+      <div class="opc-card">
+        <h3>抓主要矛盾</h3>
+        <p>同时面临十个问题？找到那个解决了就全通了的</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tools-section">
+    <h2 class="section-title">系列物料</h2>
+    <p class="section-desc">HTML 共读页面由 AI 生成，一人公司解读逐篇定制</p>
+    <div class="tools-grid">
+      <a href="方法论共读课表.html" class="tool-item" style="text-decoration:none;color:inherit;">
+        <div class="tool-icon">📋</div>
+        <div class="tool-name">课表总览</div>
+        <div class="tool-desc">四期排期与难度递进</div>
+      </a>
+      <div class="tool-item">
+        <div class="tool-icon">🤖</div>
+        <div class="tool-name">AI 协作</div>
+        <div class="tool-desc">WorkBuddy + Claude Code</div>
+      </div>
+      <div class="tool-item">
+        <div class="tool-icon">📝</div>
+        <div class="tool-name">会议记录</div>
+        <div class="tool-desc">逐字稿存档</div>
+      </div>
+      <div class="tool-item">
+        <div class="tool-icon">📁</div>
+        <div class="tool-name">源文件</div>
+        <div class="tool-desc">Markdown 原始材料</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  毛选方法论共读系列 · 人 + AI 共创 · 2026
+</footer>
+
+</body>
+</html>

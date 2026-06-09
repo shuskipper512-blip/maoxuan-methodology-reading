@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>实践论 · 毛泽东方法论共读系列 第2期</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #2c2416;
+    --ink-light: #5c5240;
+    --paper: #faf6f0;
+    --paper-dark: #f0e8d8;
+    --sepia-light: #f5edd8;
+    --sepia-border: #d4c5a0;
+    --stamp-red: #b5343a;
+    --red: #c9453b;
+    --amber: #b8751e;
+    --green: #5a7a5a;
+    --blue: #4a6a8a;
+    --accent: #c9453b;
+    --font-serif: 'Noto Serif SC', 'Songti SC', 'STSong', serif;
+    --font-sans: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-serif);
+    background: #e8e0d0;
+    color: var(--ink);
+    line-height: 1.9;
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 40px auto;
+    background: var(--paper);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04);
+    border-radius: 2px;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    background: linear-gradient(180deg, #3a3028 0%, #4a3e32 60%, #5a4e40 100%);
+    color: #e8dcc8;
+    padding: 48px 56px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 L55 30 L30 55 L5 30Z' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .hero-badge {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: #c9a86c;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .hero h1 {
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+    position: relative;
+  }
+  .hero-subtitle {
+    font-size: 17px;
+    color: #c4b89a;
+    font-family: var(--font-sans);
+    font-weight: 300;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: #b8a880;
+    position: relative;
+  }
+  .hero-meta span { white-space: nowrap; }
+  .hero-meta strong { color: #e0ceaa; font-weight: 500; }
+
+  /* ── Context Cards ── */
+  .context-section {
+    padding: 40px 56px 32px;
+    border-bottom: 1px solid var(--sepia-border);
+  }
+  .context-section h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--ink);
+    letter-spacing: 0.04em;
+  }
+  .context-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 640px) { .context-grid { grid-template-columns: 1fr; } }
+  .context-card {
+    background: var(--sepia-light);
+    border: 1px solid var(--sepia-border);
+    border-radius: 4px;
+    padding: 18px 20px;
+  }
+  .context-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    font-family: var(--font-sans);
+    color: var(--stamp-red);
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+  .context-card p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--ink-light);
+    font-family: var(--font-sans);
+  }
+
+  /* ── Life Curve ── */
+  .life-curve-section {
+    padding: 32px 56px 36px;
+    border-bottom: 1px solid var(--sepia-border);
+  }
+  .life-curve-section h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .life-curve-svg { width: 100%; max-width: 760px; display: block; margin: 0 auto; }
+
+  /* ── Connection Line ── */
+  .connection-line {
+    padding: 28px 56px;
+    border-bottom: 1px solid var(--sepia-border);
+    background: linear-gradient(90deg, transparent, var(--sepia-light) 20%, var(--sepia-light) 80%, transparent);
+    text-align: center;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    color: var(--ink-light);
+  }
+  .connection-line strong { color: var(--stamp-red); }
+
+  /* ── Original Text ── */
+  .text-section {
+    padding: 44px 56px 48px;
+    border-bottom: 1px solid var(--sepia-border);
+  }
+  .text-section h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    letter-spacing: 0.04em;
+  }
+  .original-text {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    line-height: 2.1;
+    color: var(--ink);
+  }
+  .original-text p {
+    text-indent: 2em;
+    margin-bottom: 1.2em;
+  }
+  .original-text p.no-indent {
+    text-indent: 0;
+  }
+  .original-text .break-mark {
+    text-align: center;
+    margin: 28px 0 20px;
+    color: var(--sepia-border);
+    font-size: 20px;
+    letter-spacing: 0.3em;
+    text-indent: 0;
+  }
+
+  /* ── Discussion ── */
+  .discussion-section {
+    padding: 40px 56px 36px;
+    border-bottom: 1px solid var(--sepia-border);
+  }
+  .discussion-section h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  .discussion-list {
+    list-style: none;
+    counter-reset: q;
+  }
+  .discussion-list li {
+    counter-increment: q;
+    padding: 14px 0 14px 36px;
+    position: relative;
+    border-bottom: 1px dotted var(--sepia-border);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .discussion-list li::before {
+    content: counter(q);
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 24px;
+    height: 24px;
+    background: var(--stamp-red);
+    color: #fff;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ── One-person company mapping ── */
+  .mapping-section {
+    padding: 40px 56px 36px;
+    border-bottom: 1px solid var(--sepia-border);
+  }
+  .mapping-section h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  .action-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  .action-card {
+    background: #fff;
+    border: 1px solid var(--sepia-border);
+    border-left: 4px solid var(--stamp-red);
+    border-radius: 3px;
+    padding: 16px 18px;
+  }
+  .action-card h4 {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--stamp-red);
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+  .action-card p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ink-light);
+    font-family: var(--font-sans);
+  }
+
+  /* ── Session flow card ── */
+  .flow-section {
+    padding: 36px 56px 40px;
+    border-bottom: 1px solid var(--sepia-border);
+  }
+  .flow-section h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .flow-timeline {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .flow-step {
+    flex: 1;
+    min-width: 120px;
+    background: var(--sepia-light);
+    border-radius: 4px;
+    padding: 14px;
+    text-align: center;
+  }
+  .flow-step .step-time {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--amber);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .flow-step .step-name {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .flow-step .step-note {
+    font-size: 12px;
+    color: var(--ink-light);
+    font-family: var(--font-sans);
+  }
+
+  /* ── Footer ── */
+  .page-footer {
+    padding: 28px 56px 36px;
+    text-align: center;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: #b0a080;
+  }
+  .page-footer a { color: var(--amber); text-decoration: none; }
+
+  /* ── Print / Screen ── */
+  @media screen and (max-width: 700px) {
+    .page { margin: 0; }
+    .hero { padding: 32px 24px 28px; }
+    .hero h1 { font-size: 28px; }
+    .context-section, .life-curve-section, .text-section,
+    .discussion-section, .mapping-section, .flow-section { padding: 24px 20px; }
+    .connection-line { padding: 20px; }
+    .original-text { font-size: 15px; line-height: 1.9; }
+    .original-text p { text-indent: 1.5em; }
+    .context-grid { grid-template-columns: 1fr; }
+    .action-cards { grid-template-columns: 1fr; }
+    .flow-timeline { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<!-- ═══════════ HERO ═══════════ -->
+<header class="hero">
+  <div class="hero-badge">毛泽东方法论共读系列 · 第 2 期</div>
+  <h1>实践论</h1>
+  <div class="hero-subtitle">论认识和实践的关系——知和行的关系</div>
+  <div class="hero-meta">
+    <span><strong>时间</strong> 1937年7月</span>
+    <span><strong>地点</strong> 延安 · 抗日军政大学</span>
+    <span><strong>作者年龄</strong> 43岁</span>
+    <span><strong>字数</strong> 约5,000字</span>
+    <span><strong>朗读时长</strong> 约18分钟</span>
+  </div>
+</header>
+
+<!-- ═══════════ CONTEXT ═══════════ -->
+<section class="context-section">
+  <h2>为什么要读这篇</h2>
+  <div class="context-grid">
+    <div class="context-card">
+      <h3>与第1期的关系</h3>
+      <p>第1期《反对本本主义》喊出了"没有调查就没有发言权"——是一篇战斗檄文。这一期《实践论》论证的是"为什么实践是第一位的"——是一篇哲学论文。同一件事，从檄文变成了体系。</p>
+    </div>
+    <div class="context-card">
+      <h3>作者当时的状态</h3>
+      <p>43岁，刚在陕北站稳脚跟不到两年，遵义会议翻盘后成为党的实际核心。在延安抗大给干部学员讲哲学，把长征的血泪教训升华为系统的认识论。</p>
+    </div>
+    <div class="context-card">
+      <h3>这篇文章在打什么</h3>
+      <p>两个靶子：<strong>教条主义</strong>（看轻实践，只信本本）和<strong>经验主义</strong>（看轻理论，盲目蛮干）。重点是教条主义——那些生吞活剥马克思主义词句的人，导致第五次反围剿惨败。</p>
+    </div>
+    <div class="context-card">
+      <h3>一句话过渡</h3>
+      <p>第1期教我们"不要抄作业，做自己的调查"。第2期教我们"先干起来，在实战中迭代认知"。调查→实践→认识→再实践，逻辑无缝衔接。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ LIFE CURVE ═══════════ -->
+<section class="life-curve-section">
+  <h2>教员生命曲线 · 第2期定位</h2>
+  <svg class="life-curve-svg" viewBox="0 0 760 280" xmlns="http://www.w3.org/2000/svg">
+    <!-- Grid -->
+    <defs>
+      <linearGradient id="curveGrad" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#c9453b" stop-opacity="0"/>
+        <stop offset="20%" stop-color="#c9453b" stop-opacity="0.15"/>
+        <stop offset="50%" stop-color="#c9453b"/>
+        <stop offset="80%" stop-color="#c9453b" stop-opacity="0.15"/>
+        <stop offset="100%" stop-color="#5a7a5a" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+
+    <!-- baseline -->
+    <line x1="50" y1="200" x2="730" y2="200" stroke="#d4c5a0" stroke-width="1" stroke-dasharray="6,4"/>
+
+    <!-- curve line -->
+    <path d="M60,190 Q120,195 160,175 Q190,160 220,170 Q260,180 290,140 Q320,100 360,155 Q390,190 420,170 Q450,150 480,140 Q510,130 540,160 Q570,190 600,165 Q630,140 660,135 Q690,130 720,145"
+          fill="none" stroke="#c9453b" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- High/Low labels -->
+    <text x="160" y="162" font-family="'Noto Sans SC',sans-serif" font-size="11" fill="#b5343a" text-anchor="middle" font-weight="700">36岁低谷</text>
+    <text x="290" y="128" font-family="'Noto Sans SC',sans-serif" font-size="11" fill="#b5343a" text-anchor="middle" font-weight="700">40岁至暗</text>
+    <text x="660" y="122" font-family="'Noto Sans SC',sans-serif" font-size="11" fill="#5a7a5a" text-anchor="middle" font-weight="700">48岁体系化</text>
+
+    <!-- Session markers -->
+    <!-- S1: 1930 36岁 -->
+    <circle cx="160" cy="175" r="8" fill="#c9453b" opacity="0.25"/>
+    <circle cx="160" cy="175" r="4" fill="#c9453b"/>
+    <text x="160" y="222" font-family="'Noto Sans SC',sans-serif" font-size="12" fill="#5c5240" text-anchor="middle" font-weight="700">第1期</text>
+    <text x="160" y="238" font-family="'Noto Sans SC',sans-serif" font-size="11" fill="#b0a080" text-anchor="middle">《反对本本主义》</text>
+    <text x="160" y="254" font-family="'Noto Sans SC',sans-serif" font-size="10" fill="#b0a080" text-anchor="middle">1930 · 36岁</text>
+
+    <!-- S2: 1937 43岁 (CURRENT) -->
+    <circle cx="420" cy="170" r="14" fill="#c9453b" opacity="0.15"/>
+    <circle cx="420" cy="170" r="8" fill="#c9453b"/>
+    <circle cx="420" cy="170" r="3" fill="#fff"/>
+    <text x="420" y="222" font-family="'Noto Sans SC',sans-serif" font-size="13" fill="#b5343a" text-anchor="middle" font-weight="700">◀ 第2期 今天</text>
+    <text x="420" y="240" font-family="'Noto Sans SC',sans-serif" font-size="12" fill="#b5343a" text-anchor="middle">《实践论》</text>
+    <text x="420" y="256" font-family="'Noto Sans SC',sans-serif" font-size="10" fill="#b0a080" text-anchor="middle">1937 · 43岁</text>
+
+    <!-- S3: 1941 47岁 -->
+    <circle cx="600" cy="165" r="6" fill="#c9453b" opacity="0.2"/>
+    <circle cx="600" cy="165" r="3" fill="#c9453b"/>
+    <text x="600" y="222" font-family="'Noto Sans SC',sans-serif" font-size="11" fill="#5c5240" text-anchor="middle">第3期</text>
+    <text x="600" y="236" font-family="'Noto Sans SC',sans-serif" font-size="10" fill="#b0a080" text-anchor="middle">《改造学习》</text>
+
+    <!-- S4: 1937 矛盾论 (same year, mark differently) -->
+    <circle cx="480" cy="140" r="6" fill="#5a7a5a" opacity="0.2"/>
+    <circle cx="480" cy="140" r="3" fill="#5a7a5a"/>
+    <text x="480" y="115" font-family="'Noto Sans SC',sans-serif" font-size="10" fill="#5a7a5a" text-anchor="middle">第4期</text>
+    <text x="480" y="100" font-family="'Noto Sans SC',sans-serif" font-size="10" fill="#b0a080" text-anchor="middle">《矛盾论》</text>
+
+    <!-- Key events along timeline -->
+    <g font-family="'Noto Sans SC',sans-serif" font-size="9" fill="#b0a080">
+      <text x="80" y="270" text-anchor="middle">1927 上井冈山</text>
+      <text x="130" y="270" text-anchor="middle">1929 被处分</text>
+      <text x="210" y="270" text-anchor="middle">1931 成为"毛主席"</text>
+      <text x="260" y="270" text-anchor="middle">1934 长征出发</text>
+      <text x="320" y="270" text-anchor="middle">1935 遵义会议</text>
+      <text x="520" y="270" text-anchor="middle">1941 延安整风</text>
+    </g>
+
+    <!-- Arc line connecting S1→S2 -->
+    <path d="M170,175 Q290,80 410,170" fill="none" stroke="#c9453b" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/>
+    <text x="290" y="95" font-family="'Noto Sans SC',sans-serif" font-size="10" fill="#c9453b" text-anchor="middle" opacity="0.6">七年弧线：檄文→体系</text>
+  </svg>
+</section>
+
+<!-- ═══════════ CONNECTION LINE ═══════════ -->
+<div class="connection-line">
+  第1期核心：<strong>没有调查就没有发言权</strong>（1930，战斗檄文） → 第2期核心：<strong>实践是认识的第一的和基本的观点</strong>（1937，哲学体系）<br>同一个人，同一件事，从"喊口号"变成了"论证为什么"。
+</div>
+
+<!-- ═══════════ ORIGINAL TEXT ═══════════ -->
+<section class="text-section">
+  <h2>原文全文</h2>
+  <div class="original-text">
+
+<p><strong>马克思以前的唯物论，离开人的社会性，离开人的历史发展，去观察认识问题，因此不能了解认识对社会实践的依赖关系，即认识对生产和阶级斗争的依赖关系。</strong></p>
+
+<p>首先，马克思主义者认为人类的生产活动是最基本的实践活动，是决定其它一切活动的东西。人的认识，主要地依赖于物质的生产活动，逐渐地了解自然的现象、自然的性质、自然的规律性、人和自然的关系；而且经过生产活动，也在各种不同程度上逐渐地认识了人和人的一定的相互关系。一切这些知识，离开生产活动是不能得到的。</p>
+
+<p>人的社会实践，不限于生产活动一种形式，还有多种其它的形式，阶级斗争，政治生活，科学和艺术的活动，总之社会实际生活的一切领域都是社会的人所参加的。因此，人的认识，在物质生活以外，还从政治生活文化生活中（与物质生活密切联系），在各种不同程度上，知道人和人的各种关系。其中，尤以各种形式的阶级斗争，给予人的认识发展以深刻的影响。在阶级社会中，每一个人都在一定的阶级地位中生活，各种思想无不打上阶级的烙印。</p>
+
+<p>马克思主义者认为人类社会的生产活动，是一步又一步地由低级向高级发展，因此，人们的认识，不论对于自然界方面，对于社会方面，也都是一步又一步地由低级向高级发展，即由浅入深，由片面到更多的方面。</p>
+
+<div class="break-mark">· · ·</div>
+
+<p>马克思主义者认为，只有人们的社会实践，才是人们对于外界认识的真理性的标准。实际的情形是这样的，只有在社会实践过程中（物质生产过程中，阶级斗争过程中，科学实验过程中），人们达到了思想中所预想的结果时，人们的认识才被证实了。人们要想得到工作的胜利即得到预想的结果，一定要使自己的思想合于客观外界的规律性，如果不合，就会在实践中失败。人们经过失败之后，也就从失败取得教训，改正自己的思想使之适合于外界的规律性，人们就能变失败为胜利，所谓"失败者成功之母"，"吃一堑长一智"，就是这个道理。</p>
+
+<p>辩证唯物论的认识论把实践提到第一的地位，认为人的认识一点也不能离开实践，排斥一切否认实践重要性、使认识离开实践的错误理论。</p>
+
+<p><strong>判定认识或理论之是否真理，不是依主观上觉得如何而定，而是依客观上社会实践的结果如何而定。真理的标准只能是社会的实践。实践的观点是辩证唯物论的认识论之第一的和基本的观点。</strong></p>
+
+<div class="break-mark">· · ·</div>
+
+<p>原来人在实践过程中，开始只是看到过程中各个事物的现象方面，看到各个事物的片面，看到各个事物之间的外部联系。例如有些外面的人们到延安来考察，头一二天，他们看到了延安的地形、街道、屋宇，接触了许多的人，参加了宴会、晚会和群众大会，听到了各种说话，看到了各种文件，这些就是事物的现象，事物的各个片面以及这些事物的外部联系。这叫做认识的感性阶段，就是感觉和印象的阶段。</p>
+
+<p>社会实践的继续，使人们在实践中引起感觉和印象的东西反复了多次，于是在人们的脑子里生起了一个认识过程中的突变（即飞跃），产生了概念。概念这种东西已经不是事物的现象，不是事物的各个片面，不是它们的外部联系，而是抓着了事物的本质，事物的全体，事物的内部联系了。概念同感觉，不但是数量上的差别，而且有了性质上的差别。循此继进，使用判断和推理的方法，就可产生出合乎论理的结论来。《三国演义》上所谓"眉头一皱计上心来"，我们普通说话所谓"让我想一想"，就是人在脑子中运用概念以作判断和推理的工夫。这是认识的第二个阶段，也就是理性认识的阶段。</p>
+
+<p>认识的真正任务在于经过感觉而到达于思维，到达于逐步了解客观事物的内部矛盾，了解它的规律性，了解这一过程和那一过程间的内部联系，即到达于论理的认识。</p>
+
+<p><strong>我们的实践证明：感觉到了的东西，我们不能立刻理解它，只有理解了的东西才更深刻地感觉它。</strong>感觉只解决现象问题，理论才解决本质问题。这些问题的解决，一点也不能离开实践。</p>
+
+<div class="break-mark">· · ·</div>
+
+<p><strong>你要知道梨子的滋味，你就得变革梨子，亲口吃一吃。</strong>你要知道原子的组织同性质，你就得实行物理学和化学的实验，变革原子的情况。你要知道革命的理论和方法，你就得参加革命。一切真知都是从直接经验发源的。</p>
+
+<p>但人不能事事直接经验，事实上多数的知识都是间接经验的东西，这就是一切古代的和外域的知识。这些知识在古人在外人是直接经验的东西，如果在古人外人直接经验时是符合于列宁所说的条件"科学的抽象"，是科学地反映了客观的事物，那末这些知识是可靠的，否则就是不可靠的。所以，一个人的知识，不外直接经验的和间接经验的两部分。</p>
+
+<p>中国人有一句老话："不入虎穴，焉得虎子。"这句话对于人们的实践是真理，对于认识论也是真理。离开实践的认识是不可能的。</p>
+
+<div class="break-mark">· · ·</div>
+
+<p>这里有两个要点必须着重指明。</p>
+
+<p><strong>第一个，理性认识依赖于感性认识。</strong>如果以为理性认识可以不从感性认识得来，他就是一个唯心论者。哲学史上有所谓"唯理论"一派，就是只承认理性的实在性，不承认经验的实在性，以为只有理性靠得住，而感觉的经验是靠不住的，这一派的错误在于颠倒了事实。理性的东西所以靠得住，正是由于它来源于感性，否则理性的东西就成了无源之水，无本之木。</p>
+
+<p><strong>第二，认识有待于深化，认识的感性阶段有待于发展到理性阶段。</strong>如果以为认识可以停顿在低级的感性阶段，以为只有感性认识可靠，而理性认识是靠不住的，这便是重复了历史上的"经验论"的错误。要完全地反映整个的事物，反映事物的本质，反映事物的内部规律性，就必须经过思考作用，将丰富的感觉材料加以<strong>去粗取精、去伪存真、由此及彼、由表及里</strong>的改造制作工夫，造成概念和理论的系统。</p>
+
+<p>理性认识依赖于感性认识，感性认识有待于发展到理性认识，这就是辩证唯物论的认识论。</p>
+
+<div class="break-mark">· · ·</div>
+
+<p>然而认识运动至此还没有完结。辩证唯物论的认识运动，如果只到理性认识为止，那末还只说到问题的一半。而且对于马克思主义的哲学说来，还只说到非十分重要的那一半。</p>
+
+<p><strong>马克思主义的哲学认为十分重要的问题，不在于懂得了客观世界的规律性，因而能够解释世界，而在于拿了这种对于客观规律性的认识去能动地改造世界。</strong></p>
+
+<p>认识从实践始，经过实践得到了理论的认识，还须再回到实践去。认识的能动作用，不但表现于从感性的认识到理性的认识之能动的飞跃，更重要的还须表现于从理性的认识到革命的实践这一个飞跃。</p>
+
+<p>这就是检验理论和发展理论的过程，是整个认识过程的继续。理论的东西之是否符合于客观真理性这个问题，在前面说的由感性到理性之认识运动中是没有完全解决的，也不能完全解决的。要完全地解决这个问题，只有把理性的认识再回到社会实践中去，应用理论于实践，看它是否能够达到预想的目的。</p>
+
+<div class="break-mark">· · ·</div>
+
+<p>然而一般地说来，不论在变革自然或变革社会的实践中，人们原定的思想、理论、计划、方案，毫无改变地实现出来的事，是很少的。许多时候须反复失败过多次，才能纠正错误的认识，才能到达于和客观过程的规律性相符合，因而才能够变主观的东西为客观的东西，即在实践中得到预想的结果。</p>
+
+<p>任何过程，不论是属于自然界的和属于社会的，由于内部的矛盾和斗争，都是向前推移向前发展的，人们的认识运动也应跟着推移和发展。</p>
+
+<p>我们反对革命队伍中的顽固派，他们的思想不能随变化了的客观情况而前进，在历史上表现为右倾机会主义。我们也反对"左"翼空谈主义。他们的思想超过客观过程的一定发展阶段，有些把幻想看作真理，有些则把仅在将来有现实可能性的理想，勉强地放在现时来做，离开了当前大多数人的实践，离开了当前的现实性，在行动上表现为冒险主义。</p>
+
+<p><strong>唯心论和机械唯物论，机会主义和冒险主义，都是以主观和客观相分裂，以认识和实践相脱离为特征的。</strong></p>
+
+<p>客观现实世界的变化运动永远没有完结，人们在实践中对于真理的认识也就永远没有完结。马克思列宁主义并没有结束真理，而是在实践中不断地开辟认识真理的道路。我们的结论是主观和客观、理论和实践、知和行的具体的历史的统一，反对一切离开具体历史的"左"的或右的错误思想。</p>
+
+<div class="break-mark">· · ·</div>
+
+<p><strong>通过实践而发现真理，又通过实践而证实真理和发展真理。从感性认识而能动地发展到理性认识，又从理性认识而能动地指导革命实践，改造主观世界和客观世界。实践、认识、再实践、再认识，这种形式，循环往复以至无穷，而实践和认识之每一循环的内容，都比较地进到了高一级的程度。这就是辩证唯物论的全部认识论，这就是辩证唯物论的知行统一观。</strong></p>
+
+  </div>
+</section>
+
+<!-- ═══════════ DISCUSSION ═══════════ -->
+<section class="discussion-section">
+  <h2>共读讨论</h2>
+  <p style="color:var(--ink-light);font-size:14px;margin-bottom:16px;font-family:var(--font-sans);">
+    规则：分享时先念一句今天最触动你的原文，再说你的感受。这样讨论不会漂走。
+  </p>
+  <ol class="discussion-list">
+    <li><strong>"你要知道梨子的滋味，你就得亲口吃一吃"</strong> —— 你上一次"吃了才知道"而不是"看说明书就够了"的经历是什么？在你的工作中，有哪些事是你看再多教程也没用、必须亲自上手才学会的？</li>
+    <li><strong>感性→理性→再实践的两次飞跃</strong> —— 你现在做的项目中，卡在哪一步？是感性不够（没深入调研）？理性不够（没提炼方法论）？还是没回到实践验证（知而不行）？</li>
+    <li><strong>"理论若不和革命实践联系起来，就会变成无对象的理论"</strong> —— 知识付费时代，我们是不是囤了太多"无对象的理论"？你最近学了一个东西但一直没用上的，是什么？</li>
+    <li><strong>"去粗取精、去伪存真、由此及彼、由表及里"</strong> —— 这十六个字在今天就是"信息处理能力"。你有这套工序吗？每天刷到的信息，你是直接吞下去了，还是经过了这四道工序？</li>
+    <li><strong>从1930到1937的七年跨越</strong> —— 《反对本本主义》是檄文版，《实践论》是论文版。你有没有一个冲动，把某个想法从"喊口号"升级到"建体系"？</li>
+    <li><strong>"实践、认识、再实践、再认识，循环往复以至无穷"</strong> —— 回头看你过去一年，你在哪个循环里转了最多圈？那个循环让你提升最大的是什么？</li>
+  </ol>
+</section>
+
+<!-- ═══════════ ONE-PERSON COMPANY MAPPING ═══════════ -->
+<section class="mapping-section">
+  <h2>一人公司行动卡片</h2>
+  <div class="action-cards">
+    <div class="action-card">
+      <h4>01 先干再说</h4>
+      <p>不要等"想清楚"再动手。最小可行产品扔出去，让市场给你反馈。实践是第一位的。</p>
+    </div>
+    <div class="action-card">
+      <h4>02 吃一口才知道</h4>
+      <p>看100篇复盘不如自己做一个项目。梨子的滋味只能自己尝。一切真知从直接经验发源。</p>
+    </div>
+    <div class="action-card">
+      <h4>03 感性→理性</h4>
+      <p>做完项目要复盘，把感觉提炼成方法论。停留在"感觉这次做得不错/不好"是不够的。</p>
+    </div>
+    <div class="action-card">
+      <h4>04 回到战场验证</h4>
+      <p>方法论不是用来收藏的。提炼出来的认知必须回到下一个项目中去验证和修正。</p>
+    </div>
+    <div class="action-card">
+      <h4>05 去伪存真四道工序</h4>
+      <p>面对海量信息：去掉无关的（去粗）→ 辨别真假的（去伪）→ 串联起来的（由此及彼）→ 穿透表面的（由表及里）。</p>
+    </div>
+    <div class="action-card">
+      <h4>06 循环迭代</h4>
+      <p>实践→认识→再实践→再认识。每一轮都比上一轮高一级。这就是一人公司的成长飞轮。</p>
+    </div>
+    <div class="action-card">
+      <h4>07 反对"左"和右</h4>
+      <p>右=落后于市场变化还在用旧打法。左=产品还没验证就幻想大爆。两者都是脱离实践。</p>
+    </div>
+    <div class="action-card">
+      <h4>08 真理在路上</h4>
+      <p>没有终极答案，只有不断迭代。今天的"最佳实践"明天可能就过时了。保持实践者的谦卑。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SESSION FLOW ═══════════ -->
+<section class="flow-section">
+  <h2>第2期流程卡片</h2>
+  <div class="flow-timeline">
+    <div class="flow-step">
+      <div class="step-time">00:00–00:12</div>
+      <div class="step-name">签到调频</div>
+      <div class="step-note">每人30秒：状态分+上次实践回顾</div>
+    </div>
+    <div class="flow-step">
+      <div class="step-time">00:12–00:17</div>
+      <div class="step-name">大树开场</div>
+      <div class="step-note">一句话过渡："第1期不抄作业，第2期干中学"</div>
+    </div>
+    <div class="flow-step">
+      <div class="step-time">00:17–00:37</div>
+      <div class="step-name">轮流朗读</div>
+      <div class="step-note">7人各读一段，原文逐字，不跳不加工</div>
+    </div>
+    <div class="flow-step">
+      <div class="step-time">00:37–01:10</div>
+      <div class="step-name">回扣原文讨论</div>
+      <div class="step-note">先念金句→联系问题→行动想法</div>
+    </div>
+    <div class="flow-step">
+      <div class="step-time">01:10–01:20</div>
+      <div class="step-name">回流行动</div>
+      <div class="step-note">每人一句话：今天的takeaway+一周内做的一件事</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="page-footer">
+  全文来源：《毛泽东选集》第一卷 / Marxists.org 中文马克思主义文库<br>
+  课件制作：Claude Code &amp; 大树 · 2026年6月 · 毛泽东方法论共读系列 第2期
+</footer>
+
+</div><!-- .page -->
+
+</body>
+</html>
